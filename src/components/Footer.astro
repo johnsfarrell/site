@@ -74,14 +74,26 @@ if (showFooter) {
         }</div>
 </footer>
 <style>
+    html.dark a {
+        color: rgba(255, 255, 255, 0.50);
+    }
+    html.dark a:hover {
+        color: rgba(255, 255, 255, 0.66);
+    }
+
+    html.light a {
+        color: rgba(0, 0, 0, 0.50);
+    }
+    html.light a:hover {
+        color: rgba(0, 0, 0, 0.66);
+    }
+
     footer {
         color: rgba(255, 255, 255, 0.33);
         font-size: smaller;
     }
-    a {
-        color: rgba(255, 255, 255, 0.50);
-    }
-    a:hover {
-        color: rgba(255, 255, 255, 0.66);
+
+    html.light footer {
+        color: rgba(0, 0, 0, 0.33);
     }
 </style>

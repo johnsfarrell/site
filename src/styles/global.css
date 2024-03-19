@@ -1,3 +1,33 @@
+html.light,
+html.light body {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: rgba(0, 0, 0, 0.95);
+}
+
+html.dark,
+html.dark body {
+  background-color: rgb(65, 15, 15);
+  color: rgba(255, 255, 255, 0.95);
+}
+
+html.light a {
+  text-decoration: none;
+  color: rgb(35, 35, 100);
+}
+
+html.light a:hover {
+  color: rgba(35, 35, 100, 0.75);
+}
+
+html.dark a {
+  text-decoration: none;
+  color: rgb(180, 220, 255);
+}
+
+html.dark a:hover {
+  color: rgba(180, 220, 255, 0.75);
+}
+
 html,
 body {
   height: 100%;

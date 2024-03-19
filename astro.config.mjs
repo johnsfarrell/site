@@ -12,7 +12,7 @@ export default defineConfig({
     mdx(),
     sitemap(),
     compress({
-      // css: true,
+      css: true,
       html: true,
       js: true,
       img: false,

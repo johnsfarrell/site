@@ -1,8 +1,30 @@
 ---
-import Base from './Base.astro';
-import '../styles/light.css';
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION,SITE_TITLE } from '../consts';
+
+type Props = {
+    title?: string;
+    description?: string;
+    filepath?: string;
+};
+
 ---
 
-<Base>
-    <slot />
-</Base>
+<html class="light">
+    <head>
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+    </head>
+
+    <body>
+        <div class="content-wrap">
+            <Header />
+            <main>
+                <slot />
+            </main>
+            <div class="grow"></div>
+        </div>
+        <Footer filepath={Astro.props.filepath} />
+    </body>
+</html>
