@@ -62,7 +62,7 @@ if (showFooter) {
         (showFooter && !error) 
         ? (
             <span>
-                Last updated{' '}
+                last updated{' '}
                     <!-- prettier-ignore -->
                     <a href={repoLink} target="_blank">@{shortHash}</a>
                     on {lastMod}. &#60;3
@@ -73,3 +73,8 @@ if (showFooter) {
             : "git commit info: for prod's eyes only (⌐■_■)"
         }</div>
 </footer>
+<style>
+    footer {
+        color: rgba(255, 255, 255, 0.33);
+    }
+</style>
