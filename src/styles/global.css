@@ -1,0 +1,32 @@
+a {
+  text-decoration: none;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  margin: auto;
+  padding: 0;
+  width: 800px;
+  max-width: calc(100% - 2rem);
+  display: flex;
+  flex-direction: column;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.content-wrap {
+  flex: 1;
+}
+
+nav {
+  padding: 1rem 0 0 0;
+}

@@ -1,0 +1,77 @@
+---
+import child_process from 'child_process'
+import { GITHUB_REPO } from '../consts'
+
+const today = new Date()
+
+type Props = {
+    filepath?: string
+}
+
+const filepath = Astro.props.filepath ?? ''
+
+let relativeFilePath, longHash, shortHash, lastMod, repoLink
+
+let showFooter = import.meta.env.MODE === 'production'
+let error = false
+
+if (showFooter) {
+    /**
+     * This is a fun trick to get git hashes the footers of the pages.
+     * 
+     * This will get the filepath attribute of the file if it exists, and
+     * get the commit hash of the last commit to this file to show in the
+     * footer. 
+     * 
+     * It only makes sense to be running this in production, since no commit
+     * will exist in development.
+     */
+    relativeFilePath = filepath ? child_process
+        .execSync(`git ls-files --full-name ${filepath}`)
+        .toString()
+        .trim() : ''
+
+    longHash = child_process
+        .execSync(`git log -n 1 --pretty=format:%H -- ${filepath}`)
+        .toString()
+        .trim()
+
+    shortHash = child_process
+        .execSync(`git log -n 1 --pretty=format:%h -- ${filepath}`)
+        .toString()
+        .trim()
+
+    lastMod = child_process
+        .execSync(`git log -n 1 --pretty=format:%ct -- ${filepath}`)
+        .toString()
+        .trim()
+
+    lastMod = new Date(parseInt(lastMod) * 1000).toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+    })
+
+    repoLink = `https://github.com/${GITHUB_REPO}/${relativeFilePath ? 'blob' : 'tree'}/${longHash}/${relativeFilePath}`
+
+    if (longHash === '') {
+        error = true
+    }
+}
+---
+<footer data-nosnippet>
+    <div>{
+        (showFooter && !error) 
+        ? (
+            <span>
+                Last updated{' '}
+                    <!-- prettier-ignore -->
+                    <a href={repoLink} target="_blank">@{shortHash}</a>
+                    on {lastMod}. &#60;3
+                </span>
+            )
+            : error
+            ? "<3"
+            : "git commit info: for prod's eyes only (⌐■_■)"
+        }</div>
+</footer>

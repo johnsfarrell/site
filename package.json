@@ -1,0 +1,25 @@
+{
+  "name": "site",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.5.9",
+    "@astrojs/mdx": "^2.2.0",
+    "@astrojs/prefetch": "^0.4.1",
+    "@astrojs/rss": "^4.0.5",
+    "@astrojs/sitemap": "^3.1.1",
+    "astro": "^4.5.6",
+    "astro-compress": "^2.2.15",
+    "sharp": "^0.33.2",
+    "typescript": "^5.4.2"
+  },
+  "packageManager": "yarn@4.0.2",
+  "license": "MIT"
+}

@@ -1,0 +1,42 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getCollection } from 'astro:content';
+import FormattedDate from '../../components/FormattedDate.astro';
+
+const posts = (await getCollection('blog')).sort(
+	(a, b) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+);
+---
+
+<Base>
+	<section>
+		<ul>
+			{
+				posts.map((post) => (
+					<li>
+						<a href={`/writing/${post.slug}/`}>
+							<span>
+								<span class="title">{post.data.title}</span> 
+								<span class="date"><FormattedDate date={post.data.pubDate} /></span>
+							</span>
+						</a>
+					</li>
+				))
+			}
+		</ul>
+	</section>
+</Base>
+<style>
+	ul {
+		padding: 0;
+	}
+	li {
+		list-style: none;
+	}
+	.title {
+		font-weight: bold;
+	}
+	.date {
+		font-style: italic;
+	}
+</style>

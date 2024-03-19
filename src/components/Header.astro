@@ -1,0 +1,19 @@
+---
+import HeaderLink from './HeaderLink.astro';
+import { SITE_TITLE } from '../consts';
+---
+
+<header>
+	<nav>
+		<h2><a href="/">{SITE_TITLE}</a></h2>
+		<div class="internal-links">
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/writing">writing</HeaderLink>
+		</div>
+	</nav>
+</header>
+<style>
+	.internal-links {
+		text-transform: lowercase;
+	}
+</style>
