@@ -24,6 +24,5 @@
   "devDependencies": {
     "gh-pages": "^5.0.0"
   },
-  "packageManager": "yarn@4.0.2",
   "license": "MIT"
 }
