@@ -8,11 +8,7 @@ a:hover {
 }
 
 html {
-  background: linear-gradient(
-    280deg,
-    rgb(55, 10, 10) 0%,
-    rgba(55, 10, 10, 0.95) 100%
-  );
+  background-color: rgba(55, 10, 10, 0.95);
 }
 
 html,
