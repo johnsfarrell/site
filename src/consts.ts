@@ -6,7 +6,7 @@ export const SITE_DESCRIPTION = "Computer science student at Brown University";
 export const SITE_AUTHOR = "John Farrell";
 export const SITE_EMAIL = "john_farrell@brown.edu";
 export const GITHUB_REPO = "johnsfarrell/site";
-export const SITE_URL = "https://johnsfarrell.github.io/site";
+export const SITE_URL = "https://jsfarrell.com";
 
 export const SOCIAL_MEDIA = {
   github: "https://github.com/johnsfarrell/",

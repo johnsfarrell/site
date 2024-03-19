@@ -2,7 +2,7 @@
   "name": "site",
   "type": "module",
   "version": "0.0.1",
-  "homepage": "https://johnsfarrell.github.io/site",
+  "homepage": "https://jsfarrell.com",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
