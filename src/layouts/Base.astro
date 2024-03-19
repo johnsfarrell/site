@@ -10,20 +10,9 @@ type Props = {
     filepath?: string;
 };
 
-const frontmatter = Astro.props.frontmatter ?? {};
-const title = frontmatter.title
-    ? `${frontmatter.title} | ${SITE_TITLE}`
-    : Astro.props.title
-    ? `${Astro.props.title} | ${SITE_TITLE}`
-    : SITE_TITLE;
-const description = frontmatter.description
-    ? frontmatter.description
-    : Astro.props.description ?? SITE_DESCRIPTION;
----
-
 <html lang="en">
     <head>
-        <BaseHead title={title} description={description} />
+        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
     </head>
 
     <body>
