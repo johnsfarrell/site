@@ -1,22 +1,8 @@
-a {
-  text-decoration: none;
-  color: rgb(180, 220, 255);
-}
-
-a:hover {
-  color: rgba(180, 220, 255, 0.75);
-}
-
-html {
-  background-color: rgba(55, 10, 10, 0.95);
-}
-
 html,
 body {
   height: 100%;
   margin: 0;
   font-family: "Sarala", serif;
-  color: rgba(255, 255, 255, 0.95);
 }
 
 body {

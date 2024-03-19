@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { SITE_EMAIL, SOCIAL_MEDIA } from "../consts";
+import '../styles/dark.css';
 ---
 
 <Base>
@@ -15,10 +16,5 @@ import { SITE_EMAIL, SOCIAL_MEDIA } from "../consts";
 			Please feel free to reach me at <a href={"mailto:" + SITE_EMAIL}>{SITE_EMAIL}</a>. Here are my <a href={"mailto:" + SITE_EMAIL}>email</a>, <a href={SOCIAL_MEDIA.github}>github</a>, <a href={SOCIAL_MEDIA.linkedin}>linkedin</a>, and <a href={SOCIAL_MEDIA.instagram}>instagram</a>.
 
 		</p>
-		<p>
-			A copy of my résumé is available upon request.
- 		</p>
 	</div>
 </Base>
-<style>
-</style>
