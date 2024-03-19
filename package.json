@@ -2,6 +2,7 @@
   "name": "site",
   "type": "module",
   "version": "0.0.1",
+  "homepage": "https://jsfarrell.com",
   "scripts": {
     "dev": "astro dev",
     "start": "astro dev",
@@ -19,6 +20,9 @@
     "astro-compress": "^2.2.15",
     "sharp": "^0.33.2",
     "typescript": "^5.4.2"
+  },
+  "devDependencies": {
+    "gh-pages": "^5.0.0"
   },
   "packageManager": "yarn@4.0.2",
   "license": "MIT"
