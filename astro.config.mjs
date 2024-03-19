@@ -7,7 +7,8 @@ import { defineConfig } from "astro/config";
 
 // https://astro.build/config
 export default defineConfig({
-  site: "https://jsfarrell.com",
+  site: "https://johnsfarrell.github.io",
+  base: "/site",
   integrations: [
     mdx(),
     sitemap(),
