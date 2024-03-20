@@ -63,7 +63,11 @@ nav {
   height: 0.5em;
   position: absolute;
   left: 0;
-  background: radial-gradient(circle at center, rgb(183, 154, 154), #a91717);
+  background: radial-gradient(
+    circle at center,
+    rgb(183, 154, 154),
+    rgb(169, 23, 23)
+  );
   background-size: 200vw 200vw;
   animation: moveGradient 10s infinite linear;
 }

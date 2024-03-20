@@ -2,7 +2,7 @@
   "name": "site",
   "type": "module",
   "version": "0.0.1",
-  "homepage": "https://jsfarrell.com",
+  "homepage": "https://johnfarrell.io",
   "scripts": {
     "dev": "astro dev",
     "build": "yarn add sharp --ignore-engines && astro check && astro build",
