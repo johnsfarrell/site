@@ -55,5 +55,36 @@ footer {
 }
 
 nav {
-  padding: 1rem 0 0 0;
+  padding-top: 0.75em;
+}
+
+.banner {
+  width: 100vw;
+  height: 0.5em;
+  position: absolute;
+  left: 0;
+  background: radial-gradient(circle at center, rgb(183, 154, 154), #a91717);
+  background-size: 200vw 200vw;
+  animation: moveGradient 15s infinite linear;
+}
+
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 200% 50%;
+  }
+}
+
+.cv-body h3 {
+  margin: 0;
+}
+
+.cv-body blockquote,
+.cv-body blockquote p {
+  margin: 0;
+  font-style: italic;
+  color: rgba(0, 0, 0, 0.5);
+  font-size: 0.93em;
 }
