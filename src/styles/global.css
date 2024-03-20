@@ -65,7 +65,7 @@ nav {
   left: 0;
   background: radial-gradient(circle at center, rgb(183, 154, 154), #a91717);
   background-size: 200vw 200vw;
-  animation: moveGradient 15s infinite linear;
+  animation: moveGradient 10s infinite linear;
 }
 
 @keyframes moveGradient {
