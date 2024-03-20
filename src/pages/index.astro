@@ -4,16 +4,46 @@ import { SITE_EMAIL, SOCIAL_MEDIA } from "../consts";
 ---
 
 <Base>
-	<div class="description">
-		<p>
-			Hey! I'm a student at Brown studying Computer Science. I am particularly interested in software design and machine learning, and the challenges faced intersection of the two.
-		</p>
+	<div class="container">
+		<div class="me">
+			<img src="/images/me.jpg" alt="me" />
+		</div>
+		<div class="description">
+			<br />
+			Hey! I'm a student at Brown studying Computer Science. 
+			I am particularly interested in software design and machine learning,
+			and the challenges faced at the intersection of the two.
+			<br /><br />
+			The company itself is a very successful company. In truth, they do not know anything about the exercise of pleasures, but to refuse them, but the pleasures of the body are bound to be accepted as those present, for we accuse it as if we were most repulsed by other flatteries.
+			<br /><br />
+			Hello, it's really a pain to be followed. Be prepared for the flattery, the great consequences of the loose of these not in! Rejected by the architect and the like, the flight will never happen to make the repelled by the rejected, blinded by the laborious, pleasures provided by the chosen.
+		</div>
 	</div>
 	<div class="contact">
 		<h2>contact</h2>
 		<p>
 			Please feel free to reach me at <a href={"mailto:" + SITE_EMAIL}>{SITE_EMAIL}</a>. Here are my <a href={"mailto:" + SITE_EMAIL}>email</a>, <a href={SOCIAL_MEDIA.github}>github</a>, <a href={SOCIAL_MEDIA.linkedin}>linkedin</a>, and <a href={SOCIAL_MEDIA.instagram}>instagram</a>.
-
 		</p>
 	</div>
 </Base>
+<style>
+	.description {
+		text-wrap: wrap;
+	}
+	img {
+		object-fit: cover;
+		height: 12em;
+		width: 15em;
+		float: right;
+		border-radius: 2em;
+		margin: 2em 2em 0.5em 2em;
+	}
+	@media (max-width: 500px) {
+		img {
+			float: none;
+			width: -webkit-fill-available;
+			width: fill-available;
+			margin: 2em 1em 0 1em;
+		}
+	}
+</style>

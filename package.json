@@ -5,7 +5,6 @@
   "homepage": "https://jsfarrell.com",
   "scripts": {
     "dev": "astro dev",
-    "start": "astro dev",
     "build": "yarn add sharp --ignore-engines && astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
