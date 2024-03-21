@@ -4,12 +4,14 @@ title: Contact
 description: All of my contact information.
 ---
 
-# [john_farrell@brown.edu](mailto:john_farrell@brown.edu)
+## [john_farrell@brown.edu](mailto:john_farrell@brown.edu)
 
-# [LinkedIn](https://www.linkedin.com/in/johnsfarrell/)
+## [LinkedIn](https://www.linkedin.com/in/johnsfarrell/)
 
-# [GitHub](https://www.github.com/johnsfarrell/)
+## [GitHub](https://www.github.com/johnsfarrell/)
 
-# [Instagram](https://www.instagram.com/jahn_farrell/)
+## [Instagram](https://www.instagram.com/jahn_farrell/)
 
-Please feel more than free to reach out to me! ( ᵔ ᵕ ᵔ)
+Please feel more than free to reach out to me!
+
+( ᵔ ᵕ ᵔ)
