@@ -7,15 +7,18 @@ import { SITE_TITLE } from '../consts';
 	<nav>
 		<h2>{SITE_TITLE}</h2>
 		<div class="internal-links">
-			<HeaderLink href="/">Home&nbsp;</HeaderLink>
-			<HeaderLink href="/writing">Writing&nbsp;</HeaderLink>
-			<HeaderLink href="/cv">CV&nbsp;</HeaderLink>
-			<HeaderLink href="/contact">Contact&nbsp;</HeaderLink>
+			<HeaderLink href="/">Home</HeaderLink>
+			<HeaderLink href="/writing">Writing</HeaderLink>
+			<HeaderLink href="/cv">CV</HeaderLink>
+			<HeaderLink href="/contact">Contact</HeaderLink>
 		</div>
 	</nav>
 </header>
 <style>
 	.internal-links {
 		text-transform: lowercase;
+	}
+	.internal-links > * {
+		margin-right: 0.5rem;
 	}
 </style>
