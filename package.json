@@ -5,7 +5,7 @@
   "homepage": "https://johnfarrell.io",
   "scripts": {
     "dev": "astro dev",
-    "build": "yarn add sharp --ignore-engines && astro check && astro build",
+    "build": "astro check && astro build",
     "preview": "astro preview",
     "astro": "astro"
   },
@@ -29,5 +29,6 @@
   "devDependencies": {
     "gh-pages": "^5.0.0"
   },
-  "license": "MIT"
+  "license": "MIT",
+  "packageManager": "yarn@4.1.1"
 }
