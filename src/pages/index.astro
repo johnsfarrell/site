@@ -1,9 +1,11 @@
 ---
 import Base from '../layouts/Base.astro';
 import { SITE_EMAIL, SOCIAL_MEDIA } from "../consts";
+
+const filepath = "./src/pages/index.astro";
 ---
 
-<Base>
+<Base filepath={filepath}>
 	<div class="container">
 		<div class="me">
 			<img src="/images/me.jpg" alt="me" />

@@ -15,6 +15,6 @@ const post = Astro.props;
 const { Content } = await post.render();
 ---
 
-<BlogPost {...post.data}>
+<BlogPost filepath={"./src/content/blog/" + Astro.props.id} {...post.data}>
 	<Content />
 </BlogPost>

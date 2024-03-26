@@ -2,10 +2,6 @@
 import child_process from 'child_process'
 import { GITHUB_REPO } from '../consts'
 
-type Props = {
-    filepath?: string
-}
-
 const filepath = Astro.props.filepath ?? ''
 
 let relativeFilePath, longHash, shortHash, lastMod, repoLink
