@@ -31,7 +31,7 @@ const { title, description, pubDate } = Astro.props;
 				</div>
 			</article>
 		</main>
-		<Footer />
+		<Footer filepath={Astro.props.filepath ?? Astro.props.file} />
 	</body>
 </html>
 <style>
