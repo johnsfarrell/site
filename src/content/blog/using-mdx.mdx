@@ -17,9 +17,40 @@ $$
 
 ## Why MDX?
 
-MDX is a special flavor of Markdown that supports embedded JavaScript & JSX syntax. This unlocks the ability to [mix JavaScript and UI Components into your Markdown content](https://docs.astro.build/en/guides/markdown-content/#mdx-features) for things like interactive charts or alerts.
+```python
+def greet(name):
+    return f"Hello, {name}!"
+```
+
+```javascript
+function greet(name) {
+  return `Hello, ${name}!`;
+}
+```
+
+```jsx
+function Greet({ name }) {
+  return <p>Hello, {name}!</p>;
+}
+```
+
+```tsx
+type GreetProps = {
+  name: string;
+};
+
+function Greet({ name }: GreetProps) {
+  return <p>Hello, {name}!</p>;
+}
+
+<Greet name="World" />;
+```
+
+MDX is a `special flavor` of Markdown that supports embedded JavaScript & JSX syntax. This unlocks the ability to [mix JavaScript and UI Components into your Markdown content](https://docs.astro.build/en/guides/markdown-content/#mdx-features) for things like interactive charts or alerts.
 
 If you have existing content authored in MDX, this integration will hopefully make migrating to Astro a breeze.
+
+> **Note:** If you are new to MDX, you can learn more about the syntax and features on the [MDX website](https://mdxjs.com/docs/what-is-mdx). Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
 ## Example
 
