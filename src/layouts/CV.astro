@@ -12,7 +12,7 @@ let resumeLastMod = child_process
 
 let resumeDate = new Date(parseInt(resumeLastMod) * 1000).toLocaleDateString('en-GB', {
     day: 'numeric',
-    month: 'long',
+    month: 'numeric',
     year: 'numeric',
     timeZone: 'America/New_York',
 })
