@@ -124,7 +124,7 @@ html.dark .banner {
 
 pre {
   padding: 1em;
-  border: 0.4em solid rgba(0, 0, 0, 0.5);
+  border-radius: 0.4em;
 }
 
 :not(pre) > code {
