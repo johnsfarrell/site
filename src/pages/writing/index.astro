@@ -4,7 +4,7 @@ import { getCollection } from 'astro:content';
 import FormattedDate from '../../components/FormattedDate.astro';
 
 const posts = (await getCollection('blog')).sort(
-	(a: any, b: any) => a.data.pubDate.valueOf() - b.data.pubDate.valueOf()
+	(a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
 
 const filepath = "./src/pages/writing/index.astro";
