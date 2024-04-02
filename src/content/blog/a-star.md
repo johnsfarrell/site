@@ -1,5 +1,5 @@
 ---
-title: "A* Search Algorithm"
+title: "A*"
 description: "Introduction to the A* search algorithm."
 pubDate: "April 2, 2024"
 ---
@@ -137,3 +137,44 @@ I'd like to point out that we only add `neighbor` to the queue when we find a sh
 - This condition makes Dijkstra's algorithm greedy, as we prioritize the checking the shortest path _so far_. We don't know yet whether this is the absolute shortest path, or just a local shortest path. Furthermore, the queue management (which I didn't really cover in the pseudocode) is also greedy, as the smallest tentative distance currently given by vertices in the queue.
 
 It is important to point out we don't visit each vertex only once under this condition, but rather only once whenever a shorter path is found.
+
+## A\* Search Algorithm
+
+The goal of the A\* search algorithm is to find the shortest path from a starting to an ending vertex. A\* encorporates concepts of both BFS and Dijkstra's algorithm. What differientiates A\* from other path finding algorithms is that it is smarter, which we will learn about below. A\* is a popular method for efficiently finding the shortest path in a graph.
+
+The A\* algorithm uses a heuristic to estimate the cost of the cheapest path from the starting to the ending vertex. This heuristic is similar to the `distance` calculation above in Dijkstra's algorithm. At each step, A\* chooses the vertex with the smallest `f` value, where:
+
+$$
+f = g + h
+$$
+
+> $g$ is the cost to get to the current vertex from the starting vertex.
+
+> $h$ is the heuristic. It estimates the cost from the current vertex to the ending vertex.
+
+> So, $f$ is the estimated cost of the cheapest path from the starting vertex, through the current vertex, to the ending vertex.
+
+> A **heuristic** is an estimated cost to reach the goal from the current vertex.
+
+The A\* algorithm works as follows:
+
+1. Initialize an open set and closed set. These sets will store vertices and their `f` values. The open set has vertices we want to explore, while the closed set has vertices fully explored.
+
+   - This is similar to the `queue` and `visited` sets in Dijkstra's algorithm.
+
+2. Add the starting vertex to the open set, as that is where we want to start exploring.
+
+3. Take the vertex with the smallest `f` from the open set.
+
+4. If the vertex is the ending vertex, we have found the shortest path.
+
+5. For each neighbor of the current vertex, calculate `f`. Remember, `f = g + h`.
+
+   - If the neighbor is in the open set and the new `f` value is lower, update the neighbor's `f` value.
+   - If the neighbor is in the closed set and the new `f` value is lower, move the neighbor back to the open set.
+   - If the neighbor is in the closed set and the new `f` value is higher, ignore the neighbor.
+   - If the neighbor is not in the open set, add it to the open set.
+
+6. Move the current vertex to the closed set.
+
+7. Repeat steps 3-6 until the open set is empty.

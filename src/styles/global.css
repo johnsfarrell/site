@@ -128,8 +128,8 @@ pre {
 }
 
 :not(pre) > code {
-  padding: 0.25em 0.75em;
-  background-color: rgb(255 255 255 / 7.5%);
+  padding: 0.15em 0.55em;
+  background-color: rgba(122, 122, 122, 0.075);
   border-radius: 0.5em;
 }
 
