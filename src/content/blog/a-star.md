@@ -178,3 +178,9 @@ The A\* algorithm works as follows:
 6. Move the current vertex to the closed set.
 
 7. Repeat steps 3-6 until the open set is empty.
+
+### Sources
+
+- [Breadth First Search](https://en.wikipedia.org/wiki/Breadth-first_search)
+- [Dijkstra's Algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm)
+- [A\* Search Algorithm](https://en.wikipedia.org/wiki/A*_search_algorithm)

@@ -51,7 +51,7 @@ $output = xw + b = (1 \times 784) (784 \times 1) + b = (1 \times 1) + b=$ (scala
 
 For a multi-class classification problem, we can add more perceptrons as above. We then pass in each input value to each perceptron.
 
-![Perceptron layer](../img/neural-networks/layer.png)
+![Perceptron](../img/neural-networks/layer.png)
 
 **Example**: For a $28\times 28$ pixel image, we can vectorize the image into a $1 \times 784$ matrix. **But now we have 10 classes.** The dimensions of our variables will be:
 
@@ -131,6 +131,10 @@ $$
 
 where $n=$ layer number, $K=$ kernel size, $j=$ # of channels (input) or filters (depth)
 
-### Pooling for CNNs
+### Learn More
 
-The purpose of pooling is to reduce the size of feature maps.
+If you are interested in learning more about neural networks, I recommend reading my article on [neural network layers](/writing/nn-layers)!
+
+### Sources
+
+- [Computer Vision @ Brown](https://browncsci1430.github.io/)
