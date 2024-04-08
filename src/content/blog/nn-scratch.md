@@ -1,7 +1,7 @@
 ---
-title: "Implementing a Neural Network"
+title: "Training Neural Networks"
 description: "Implementing a neural network from scratch with sigmoid and softmax activations using Python."
-pubDate: "April 6, 2024"
+pubDate: "April 8, 2024"
 ---
 
 This is a guide to implementing a neural network and training with gradient descent.
