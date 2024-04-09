@@ -23,6 +23,7 @@ html.light a {
 
 html.light a:hover {
   color: rgba(35, 35, 100, 0.75);
+  text-decoration: underline;
 }
 
 html.dark a {
@@ -32,6 +33,7 @@ html.dark a {
 
 html.dark a:hover {
   color: rgba(180, 220, 255, 0.75);
+  text-decoration: underline;
 }
 
 html.dark-gray a {
