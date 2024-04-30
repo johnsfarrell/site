@@ -11,6 +11,7 @@
 | `yarn build`     | Build your production site to `./dist/`      |
 | `yarn preview`   | Preview your build locally, before deploying |
 | `yarn astro ...` | Run CLI commands, for help specify `--help`  |
+| `nvm use ...`    | Use the correct Node version (`18.14.1`)     |
 
 <hr>
 
