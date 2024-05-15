@@ -1,55 +1,20 @@
-html.light,
-html.light body {
-  background-color: rgba(255, 255, 255, 0.95);
-  color: rgba(0, 0, 0, 0.95);
-}
-
-html.dark,
-html.dark body {
-  background-color: rgb(65, 15, 15);
-  color: rgba(255, 255, 255, 0.95);
-}
-
-html.dark-gray,
-html.dark-gray body {
-  background-color: rgb(25, 25, 25);
-  color: rgba(255, 255, 255, 0.95);
-}
-
-html.light a {
+html a {
   text-decoration: none;
   color: rgb(35, 35, 100);
 }
 
-html.light a:hover {
+html a:hover {
   color: rgba(35, 35, 100, 0.75);
   text-decoration: underline;
 }
 
-html.dark a {
-  text-decoration: none;
-  color: rgb(180, 220, 255);
-}
-
-html.dark a:hover {
-  color: rgba(180, 220, 255, 0.75);
-  text-decoration: underline;
-}
-
-html.dark-gray a {
-  text-decoration: none;
-  color: rgb(180, 220, 255);
-}
-
-html.dark-gray a:hover {
-  color: rgba(180, 220, 255, 0.75);
-}
-
 html,
 body {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: rgba(0, 0, 0, 0.95);
   height: 100%;
   margin: 0;
-  font-family: "Sarala", serif;
+  font-family: "Reddit Sans", serif;
 }
 
 body {
@@ -84,20 +49,6 @@ nav {
     circle at center,
     rgb(177, 201, 226),
     rgb(86, 109, 183)
-  );
-  background-size: 200vw 200vw;
-  animation: moveGradient 10s infinite linear;
-}
-
-html.dark .banner {
-  width: 100vw;
-  height: 0.4em;
-  position: absolute;
-  left: 0;
-  background: radial-gradient(
-    circle at center,
-    rgb(183, 154, 154),
-    rgb(169, 23, 23)
   );
   background-size: 200vw 200vw;
   animation: moveGradient 10s infinite linear;
