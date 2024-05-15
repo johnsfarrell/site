@@ -4,7 +4,7 @@ title: Contact
 description: All of my contact information.
 ---
 
-## john_farrell@brown.edu
+[![Email](https://img.shields.io/badge/john__farrell%40brown.edu-%23D14836.svg?style=plastic&logo=gmail&logoColor=white)](mailto:john_farrell@brown.edu)
 
 [![LinkedIn](https://img.shields.io/badge/linkedin.com/in/johnsfarrell-%230077B5.svg?style=plastic&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/johnsfarrell/)
 
