@@ -1,17 +1,18 @@
 html a {
   text-decoration: none;
-  color: rgb(35, 35, 100);
+  color: rgb(60, 60, 120);
+  transition: all 0.1s;
 }
 
 html a:hover {
-  color: rgba(35, 35, 100, 0.75);
+  transform: scale(1.075) rotate(2.5deg);
   text-decoration: underline;
 }
 
 html,
 body {
-  background-color: rgba(255, 255, 255, 0.95);
-  color: rgba(0, 0, 0, 0.95);
+  background-color: rgb(245, 245, 245);
+  color: rgba(0, 0, 0, 0.92);
   height: 100%;
   margin: 0;
   font-family: "Reddit Sans", serif;
@@ -90,6 +91,15 @@ img {
   max-width: 25em;
   width: 100%;
   height: 100%;
+  animation: load 0.25s ease;
+  mix-blend-mode: multiply;
+}
+
+@keyframes load {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
 }
 
 :not(.info) > blockquote {
