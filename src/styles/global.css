@@ -89,12 +89,11 @@ pre {
 }
 
 img {
-  width: auto;
-  max-width: 100%;
-  height: min-content;
-  max-height: 15em;
+  width: 100%;
+  height: auto;
   animation: load 0.3s ease;
   mix-blend-mode: multiply;
+  object-fit: contain;
 }
 
 @keyframes load {
