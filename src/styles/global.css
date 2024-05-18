@@ -91,6 +91,7 @@ pre {
 img {
   width: 100%;
   height: auto;
+  max-height: 10em;
   animation: load 0.3s ease;
   mix-blend-mode: multiply;
   object-fit: contain;
