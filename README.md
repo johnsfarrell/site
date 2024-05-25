@@ -14,4 +14,4 @@
 
 <hr>
 
-Built with [Astro](https://astro.build/) and [Yarn](https://yarnpkg.com/). Inspired by [Jiahua](https://jiahua.io/).
+Built with [Astro](https://astro.build/) and [Bun](https://bun.sh/). Inspired by [Jiahua](https://jiahua.io/).
