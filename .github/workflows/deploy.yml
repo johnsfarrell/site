@@ -23,9 +23,9 @@ jobs:
       - name: Install, build, and upload your site
         uses: withastro/action@v2
         with:
-        path: .
-        node-version: 18.14.1
-        package-manager: bun@1.1.10
+          path: .
+          node-version: 18.14.1
+          package-manager: bun@1.1.10
 
   deploy:
     needs: build
