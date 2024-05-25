@@ -1,6 +1,7 @@
 ---
 import Base from '../layouts/Base.astro';
 import { SITE_EMAIL, SOCIAL_MEDIA } from "../consts";
+import { Image } from 'astro:assets';
 
 const filepath = "./src/pages/index.astro";
 ---
@@ -8,7 +9,7 @@ const filepath = "./src/pages/index.astro";
 <Base filepath={filepath}>
 	<div class="container">
 		<div class="me">
-			<img src="/images/me.jpg" alt="me" />
+			<Image src="/images/me.jpg" alt="me" width={800} height={800} />
 		</div>
 		<div class="description">
 			<br />

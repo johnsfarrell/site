@@ -4,14 +4,13 @@
 
 <hr>
 
-| Command          | Action                                       |
-| :--------------- | :------------------------------------------- |
-| `yarn install`   | Installs dependencies to `./node_modules/`   |
-| `yarn dev`       | Starts local dev server at `localhost:4321`  |
-| `yarn build`     | Build your production site to `./dist/`      |
-| `yarn preview`   | Preview your build locally, before deploying |
-| `yarn astro ...` | Run CLI commands, for help specify `--help`  |
-| `nvm use ...`    | Use the correct Node version (`18.14.1`)     |
+| Command         | Action                                                                               |
+| :-------------- | :----------------------------------------------------------------------------------- |
+| `bun install`   | Installs dependencies to `./node_modules/`                                           |
+| `bun dev`       | Starts local dev server at `localhost:4321`                                          |
+| `bun preview`   | Build your production site to `./dist/` and previews build locally, before deploying |
+| `bun astro ...` | Run CLI commands, for help specify `--help`                                          |
+| `nvm use ...`   | Use the correct Node version (`18.14.1`)                                             |
 
 <hr>
 
