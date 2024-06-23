@@ -9,7 +9,9 @@ const filepath = "./src/pages/index.astro";
 <Base filepath={filepath}>
 	<div class="container">
 		<div class="me">
-			<Image src="/images/me.jpg" alt="me" width={800} height={800} />
+			<a href={SOCIAL_MEDIA.linkedin}>
+				<Image src="/images/me.jpg" id="me" alt="me" width={800} height={800} />
+			</a>
 		</div>
 		<div class="description">
 			<br />
@@ -34,6 +36,7 @@ const filepath = "./src/pages/index.astro";
 		</p>
 	</div>
 </Base>
+
 <style>
 	.description {
 		text-wrap: wrap;
@@ -46,6 +49,13 @@ const filepath = "./src/pages/index.astro";
 		border-radius: 1em;
 		margin: 2em 2em 0.5em 2em;
 		transform: rotate(2deg);
+		transition: 0.15s ease;
+		box-shadow: 0 0 2em rgba(0,0,0,0.5);
+	}
+	img:hover {
+		scale: 1.1;
+		box-shadow: 0 0 0.5em rgba(0,0,0,0.25);
+		cursor: pointer;
 	}
 	@media (max-width: 600px) {
 		img {
@@ -53,3 +63,21 @@ const filepath = "./src/pages/index.astro";
 		}
 	}
 </style>
+
+<script>
+	// Source: https://armandocanals.com/posts/CSS-transform-rotating-a-3D-object-perspective-based-on-mouse-position.html
+	// (inspiration): https://github.com/jchen/site/blob/0ade8a3e5f174563974574eaf2cfc6b90cdf9bae/src/components/Fortune/Fortune.astro
+	let constrain = 50;
+	let mouseOverContainer = document.getElementsByTagName("body")[0];
+	let rotationalContainer = document.getElementById("me");
+
+	mouseOverContainer.onmousemove = function (e) {
+		rotationalContainer && window.requestAnimationFrame(function () {
+			let box = rotationalContainer.getBoundingClientRect();
+			let calcX = -(e.clientY - box.y - box.height / 2) / constrain;
+			let calcY = (e.clientX - box.x - box.width / 2) / constrain;
+			let transformation = `perspective(100px) rotateX(${calcX}deg) rotateY(${calcY}deg)`;
+			rotationalContainer.style.transform = transformation;
+		});
+	};
+</script>
