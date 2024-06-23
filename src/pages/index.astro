@@ -67,8 +67,8 @@ const filepath = "./src/pages/index.astro";
 <script>
 	// Source: https://armandocanals.com/posts/CSS-transform-rotating-a-3D-object-perspective-based-on-mouse-position.html
 	// (inspiration): https://github.com/jchen/site/blob/0ade8a3e5f174563974574eaf2cfc6b90cdf9bae/src/components/Fortune/Fortune.astro
-	let constrain = 50;
-	let mouseOverContainer = document.getElementsByTagName("body")[0];
+	let constrain = 150;
+	let mouseOverContainer = document.getElementsByTagName("html")[0];
 	let rotationalContainer = document.getElementById("me");
 
 	mouseOverContainer.onmousemove = function (e) {
