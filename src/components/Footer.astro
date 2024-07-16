@@ -3,7 +3,6 @@ import child_process from 'child_process'
 import { GITHUB_REPO } from '../consts'
 
 const filepath = Astro.props.filepath ?? Astro.props.file ?? ''
-console.log(import.meta.url.replace(/^file:\/\//, ''))
 
 let relativeFilePath, longHash, shortHash, lastMod, repoLink
 
@@ -23,25 +22,25 @@ if (showFooter) {
      * will exist in development.
      */
     relativeFilePath = filepath ? child_process
-    .execSync(`git ls-files --full-name ${filepath}`)
-    .toString()
-    .trim() : ''
+        .execSync(`git ls-files --full-name ${filepath}`)
+        .toString()
+        .trim() : ''
     console.log("relativeFilePath", relativeFilePath)
 
     longHash = child_process
-        .execSync(`git log -n 1 --pretty=format:%H -- ${filepath}`)
+        .execSync(`git log -n 1 --pretty=format:%H -- ${relativeFilePath}`)
         .toString()
         .trim()
     console.log("longHash", longHash)
 
     shortHash = child_process
-        .execSync(`git log -n 1 --pretty=format:%h -- ${filepath}`)
+        .execSync(`git log -n 1 --pretty=format:%h -- ${relativeFilePath}`)
         .toString()
         .trim()
     console.log("shortHash", shortHash)
 
     lastMod = child_process
-        .execSync(`git log -n 1 --pretty=format:%ct -- ${filepath}`)
+        .execSync(`git log -n 1 --pretty=format:%ct -- ${relativeFilePath}`)
         .toString()
         .trim()
     console.log("lastMod", lastMod)
