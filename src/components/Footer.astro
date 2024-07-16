@@ -5,22 +5,20 @@ import { GITHUB_REPO } from '../consts'
 const filepath = Astro.props.filepath ?? Astro.props.file ?? ''
 
 async function getGitFooterData(filepath: string) {
-    if (!filepath) {
-        console.error('No filepath provided');
-        return { error: true };
-    }
-
     try {
-        const relativeFilePath = await execShellCommand(`git ls-files --full-name ${filepath}`);
-        if (!relativeFilePath) {
-            console.error('Filepath does not exist in the repository');
-            return { error: true };
-        }
+        const relativeFilePath = filepath ? await execShellCommand(`git ls-files --full-name ${filepath}`) : '';
+        const longHash = await execShellCommand(`git log -n 1 --pretty=format:%H -- ${relativeFilePath}`);
+        const shortHash = await execShellCommand(`git log -n 1 --pretty=format:%h -- ${relativeFilePath}`);
+        const lastModEpoch = await execShellCommand(`git log -n 1 --pretty=format:%ct -- ${relativeFilePath}`);
+        const lastMod = new Date(parseInt(lastModEpoch as string) * 1000).toLocaleDateString('en-GB', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+            timeZone: 'America/New_York',
+        });
+        const repoLink = `https://github.com/${GITHUB_REPO}/${relativeFilePath ? 'blob' : 'tree'}/${longHash}/${relativeFilePath}`;
 
-        const commits = await execShellCommand(`git log -n 5 --pretty=format:'%h - %s - %cd' --date=format:'%d %b %Y' -- "${relativeFilePath}"`);
-        const commitsList = (commits as string).split('\n').map(commit => commit.trim());
-
-        return { relativeFilePath, commitsList, error: false };
+        return { relativeFilePath, longHash, shortHash, lastMod, repoLink, error: false };
     } catch (error) {
         console.error('Failed to get git data:', error);
         return { error: true };
@@ -49,15 +47,12 @@ if (showFooter) {
 <footer data-nosnippet>
     <div>{
         showFooter && footerData && !footerData.error
-            ? <>
-                <span>Recent updates:</span>
-                <ul>
-                  {footerData.commitsList?.map(commit => (
-                    <li>{commit}</li>
-                  ))}
-                </ul>
-              </>
-            : <span>Content may be outdated or under revision. &#60;3</span>
+            ? <span>
+                last updated
+                <a href={footerData.repoLink} target="_blank">@{footerData.shortHash}</a>
+                on {footerData.lastMod}. &#60;3
+              </span>
+            : <span>&#60;3</span>
     }</div>
 </footer>
 <style>
@@ -70,9 +65,5 @@ if (showFooter) {
     html footer {
         font-size: smaller;
         color: rgba(0, 0, 0, 0.33);
-        line-height: 1.5;
-    }
-    html footer ul {
-        padding-left: 20px;
     }
 </style>
