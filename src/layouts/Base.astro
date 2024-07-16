@@ -3,10 +3,6 @@ import BaseHead from '../components/BaseHead.astro'
 import Footer from '../components/Footer.astro'
 import Header from '../components/Header.astro'
 import { SITE_DESCRIPTION,SITE_TITLE } from '../consts'
-
-type Props = {
-    filepath?: string
-}
 ---
 
 
@@ -24,6 +20,6 @@ type Props = {
             </main>
             <div class="grow"></div>
         </div>
-        <Footer filepath={Astro.props.filepath} />
+        <Footer filepath={Astro.props.filepath ?? Astro.props.file } />
     </body>
 </html>
