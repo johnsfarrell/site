@@ -1,10 +1,10 @@
 ---
-title: "Flutter.dart from React.js"
+title: "Flutter and Dart"
 description: "My notes on Flutter and Dart, from a React and JavaScript background."
 pubDate: "June 2, 2024"
 ---
 
-These are my notes on Flutter (and subsequently Dart) from my 2024 summer internship at [BillMax](https://billmax.com). I continually update this page from June to August 2024 with notes, documentation, and other cool things I learn during this mobile development. I have never touched mobile application development before this summer, rather having a strong background in web development (React and Vanilla HTML, CSS, JavaScript). It is interesting to make note of the similarities and differences between the web and mobile frontend development.
+These are my notes on Flutter (and subsequently Dart) from my 2024 summer internship at [BillMax](https://billmax.com). I continually update this page from June to August 2024 with notes, documentation, and other cool things I learn during this mobile development. I have never touched mobile application development before this summer, rather having a strong background in web development (React and Vanilla HTML, CSS, JavaScript). It is interesting to make note of the similarities and differences between the web and mobile development.
 
 <hr>
 
