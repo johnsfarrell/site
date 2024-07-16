@@ -343,7 +343,7 @@ Then, we will recursively search through every course until we have reached the 
 
 ### $O(E)$ Cycle Detection
 
-We simple add a `checked` set to keep track of the solution to inner recursive function calls and avoid repeated work.
+We simply add a `checked` set to keep track of the solution to inner recursive function calls and avoid repeated work.
 
 ```python
 def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
