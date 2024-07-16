@@ -2,59 +2,54 @@
 import child_process from 'child_process'
 import { GITHUB_REPO } from '../consts'
 
-const filepath = Astro.props.filepath ?? Astro.props.file ?? ''
+const filepath = Astro.props.filepath ?? ''
 
-async function getGitFooterData(filepath: string) {
-    try {
-        const relativeFilePath = filepath ? await execShellCommand(`git ls-files --full-name ${filepath}`) : '';
-        const longHash = await execShellCommand(`git log -n 1 --pretty=format:%H -- ${relativeFilePath}`);
-        const shortHash = await execShellCommand(`git log -n 1 --pretty=format:%h -- ${relativeFilePath}`);
-        const lastModEpoch = await execShellCommand(`git log -n 1 --pretty=format:%ct -- ${relativeFilePath}`);
-        const lastMod = new Date(parseInt(lastModEpoch as string) * 1000).toLocaleDateString('en-GB', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric',
-            timeZone: 'America/New_York',
-        });
-        const repoLink = `https://github.com/${GITHUB_REPO}/${relativeFilePath ? 'blob' : 'tree'}/${longHash}/${relativeFilePath}`;
-
-        return { relativeFilePath, longHash, shortHash, lastMod, repoLink, error: false };
-    } catch (error) {
-        console.error('Failed to get git data:', error);
-        return { error: true };
-    }
-}
-
-async function execShellCommand(cmd: string) {
+async function execShellCommand(cmd: string): Promise<string> {
     return new Promise((resolve, reject) => {
         child_process.exec(cmd, (error, stdout) => {
             if (error) {
                 reject(error);
+            } else {
+                resolve(stdout.trim());
             }
-            resolve(stdout.trim());
         });
     });
 }
 
-const showFooter = import.meta.env.MODE === 'production';
-let footerData;
+async function getGitFooterData(filepath: string) {
+    const relativeFilePath = await execShellCommand(`git ls-files --full-name ${filepath}`);
+    const [longHash, shortHash, lastModEpoch] = await Promise.all([
+        execShellCommand(`git log -n 1 --pretty=format:%H  -- ${relativeFilePath}`),
+        execShellCommand(`git log -n 1 --pretty=format:%h  -- ${relativeFilePath}`),
+        execShellCommand(`git log -n 1 --pretty=format:%ct -- ${relativeFilePath}`)
+    ]);
+    const lastMod = new Date(parseInt(lastModEpoch) * 1000).toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        timeZone: 'America/New_York',
+    });
+    const gitCommand = `git log -n 1 --pretty=format:%ct -- ${relativeFilePath}`;
+    const repoLink = `https://github.com/${GITHUB_REPO}/${relativeFilePath ? 'blob' : 'tree'}/${longHash}/${relativeFilePath}`;
 
-if (showFooter) {
-    footerData = await getGitFooterData(filepath);
-    console.log("\n", footerData);
+    return { relativeFilePath, gitCommand, longHash, shortHash, lastMod, repoLink };
 }
+
+const footerData = await getGitFooterData(filepath).catch(() => null);
 ---
-<footer data-nosnippet>
-    <div>{
-        showFooter && footerData && !footerData.error
-            ? <span>
-                last updated
-                <a href={footerData.repoLink} target="_blank">@{footerData.shortHash}</a>
-                on {footerData.lastMod}. &#60;3
-              </span>
-            : <span>&#60;3</span>
-    }</div>
+
+<footer data-nosnippet>{footerData ?
+    <div id="loading">
+        {footerData.gitCommand}
+    </div>
+    <div id="loaded">
+        last updated
+        <a href={footerData.repoLink} target="_blank">@{footerData.shortHash}</a>
+        on {footerData.lastMod}. &#60;3
+    </div>
+    : <>&#60;3</>}
 </footer>
+
 <style>
     html a {
         color: rgba(0, 0, 0, 0.50);
@@ -65,5 +60,30 @@ if (showFooter) {
     html footer {
         font-size: smaller;
         color: rgba(0, 0, 0, 0.33);
+        position: relative;
+    }
+
+    @keyframes loading {
+        to { opacity: 0; transform: rotateX(-75deg) translateY(-50px); }
+    }
+
+    @keyframes loaded {
+        to { opacity: 1; transform: rotateX(0) translateY(0px)}
+    }
+
+    #loading, #loaded {
+        position: absolute;
+        top: 0;
+        transition: opacity 0.2s ease-in-out;
+    }
+
+    #loading {
+        animation: loading 0.3s 1.5s forwards;
+    }
+
+    #loaded {
+        opacity: 0;
+        transform: rotateX(-70deg) translateY(50px);
+        animation: loaded 0.3s 1.5s forwards;
     }
 </style>
