@@ -21,25 +21,30 @@ if (showFooter) {
      * It only makes sense to be running this in production, since no commit
      * will exist in development.
      */
+    console.log("relativeFilePath", relativeFilePath)
     relativeFilePath = filepath ? child_process
         .execSync(`git ls-files --full-name ${filepath}`)
         .toString()
         .trim() : ''
+    console.log("filepath", filepath)
 
     longHash = child_process
         .execSync(`git log -n 1 --pretty=format:%H -- ${filepath}`)
         .toString()
         .trim()
+    console.log("longHash", longHash)
 
     shortHash = child_process
         .execSync(`git log -n 1 --pretty=format:%h -- ${filepath}`)
         .toString()
         .trim()
+    console.log("shortHash", shortHash)
 
     lastMod = child_process
         .execSync(`git log -n 1 --pretty=format:%ct -- ${filepath}`)
         .toString()
         .trim()
+    console.log("lastMod", lastMod)
 
     lastMod = new Date(parseInt(lastMod) * 1000).toLocaleDateString('en-GB', {
         day: 'numeric',
@@ -47,8 +52,10 @@ if (showFooter) {
         year: 'numeric',
         timeZone: 'America/New_York',
     })
+    console.log("lastMod", lastMod)
 
     repoLink = `https://github.com/${GITHUB_REPO}/${relativeFilePath ? 'blob' : 'tree'}/${longHash}/${relativeFilePath}`
+    console.log("repoLink", repoLink)
 
     if (longHash === '') {
         error = true
