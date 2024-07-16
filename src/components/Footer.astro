@@ -4,78 +4,55 @@ import { GITHUB_REPO } from '../consts'
 
 const filepath = Astro.props.filepath ?? Astro.props.file ?? ''
 
-let relativeFilePath, longHash, shortHash, lastMod, repoLink
+async function getGitFooterData(filepath: string) {
+    try {
+        const relativeFilePath = filepath ? await execShellCommand(`git ls-files --full-name ${filepath}`) : '';
+        const longHash = await execShellCommand(`git log -n 1 --pretty=format:%H -- ${relativeFilePath}`);
+        const shortHash = await execShellCommand(`git log -n 1 --pretty=format:%h -- ${relativeFilePath}`);
+        const lastModEpoch = await execShellCommand(`git log -n 1 --pretty=format:%ct -- ${relativeFilePath}`);
+        const lastMod = new Date(parseInt(lastModEpoch as string) * 1000).toLocaleDateString('en-GB', {
+            day: 'numeric',
+            month: 'long',
+            year: 'numeric',
+            timeZone: 'America/New_York',
+        });
+        const repoLink = `https://github.com/${GITHUB_REPO}/${relativeFilePath ? 'blob' : 'tree'}/${longHash}/${relativeFilePath}`;
 
-let showFooter = import.meta.env.MODE === 'production'
-let error = false
+        return { longHash, shortHash, lastMod, repoLink, error: false };
+    } catch (error) {
+        console.error('Failed to get git data:', error);
+        return { error: true };
+    }
+}
+
+async function execShellCommand(cmd: string) {
+    return new Promise((resolve, reject) => {
+        child_process.exec(cmd, (error, stdout) => {
+            if (error) {
+                reject(error);
+            }
+            resolve(stdout.trim());
+        });
+    });
+}
+
+const showFooter = import.meta.env.MODE === 'production';
+let footerData;
 
 if (showFooter) {
-    /**
-     * src: https://github.com/jchen/site/blob/main/src/components/Footer.astro
-     * This is a fun trick to get git hashes the footers of the pages.
-     * 
-     * This will get the filepath attribute of the file if it exists, and
-     * get the commit hash of the last commit to this file to show in the
-     * footer. 
-     * 
-     * It only makes sense to be running this in production, since no commit
-     * will exist in development.
-     */
-    relativeFilePath = filepath ? child_process
-        .execSync(`git ls-files --full-name ${filepath}`)
-        .toString()
-        .trim() : ''
-    console.log("relativeFilePath", relativeFilePath)
-
-    longHash = child_process
-        .execSync(`git log -n 1 --pretty=format:%H -- ${relativeFilePath}`)
-        .toString()
-        .trim()
-    console.log("longHash", longHash)
-
-    shortHash = child_process
-        .execSync(`git log -n 1 --pretty=format:%h -- ${relativeFilePath}`)
-        .toString()
-        .trim()
-    console.log("shortHash", shortHash)
-
-    lastMod = child_process
-        .execSync(`git log -n 1 --pretty=format:%ct -- ${relativeFilePath}`)
-        .toString()
-        .trim()
-    console.log("lastMod", lastMod)
-
-    lastMod = new Date(parseInt(lastMod) * 1000).toLocaleDateString('en-GB', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric',
-        timeZone: 'America/New_York',
-    })
-    console.log("lastMod", lastMod)
-
-    repoLink = `https://github.com/${GITHUB_REPO}/${relativeFilePath ? 'blob' : 'tree'}/${longHash}/${relativeFilePath}`
-    console.log("repoLink", repoLink)
-
-    if (longHash === '') {
-        error = true
-    }
+    footerData = await getGitFooterData(filepath);
 }
 ---
 <footer data-nosnippet>
     <div>{
-        (showFooter && !error) 
-        ? (
-            <span>
-                last updated{' '}
-                    <!-- prettier-ignore -->
-                    <a href={repoLink} target="_blank">@{shortHash}</a>
-                    on {lastMod}. &#60;3
-                </span>
-            )
-            : error
-            ? "<3"
-            : "git commit info: for prod's eyes only (⌐■_■)"
-        }</div>
+        showFooter && footerData && !footerData.error
+            ? <span>
+                last updated
+                <a href={footerData.repoLink} target="_blank">@{footerData.shortHash}</a>
+                on {footerData.lastMod}. &#60;3
+              </span>
+            : <span>&#60;3</span>
+    }</div>
 </footer>
 <style>
     html a {
@@ -84,7 +61,6 @@ if (showFooter) {
     html a:hover {
         color: rgba(0, 0, 0, 0.66);
     }
-
     html footer {
         font-size: smaller;
         color: rgba(0, 0, 0, 0.33);
