@@ -8,6 +8,7 @@ async function getGitFooterData(filepath: string) {
     try {
         const relativeFilePath = filepath ? await execShellCommand(`git ls-files --full-name ${filepath}`) : '';
         const longHash = await execShellCommand(`git log -n 1 --pretty=format:%H -- ${relativeFilePath}`);
+        console.log(`git log -n 1 --pretty=format:%H -- ${relativeFilePath}`);
         const shortHash = await execShellCommand(`git log -n 1 --pretty=format:%h -- ${relativeFilePath}`);
         const lastModEpoch = await execShellCommand(`git log -n 1 --pretty=format:%ct -- ${relativeFilePath}`);
         const lastMod = new Date(parseInt(lastModEpoch as string) * 1000).toLocaleDateString('en-GB', {
@@ -18,7 +19,7 @@ async function getGitFooterData(filepath: string) {
         });
         const repoLink = `https://github.com/${GITHUB_REPO}/${relativeFilePath ? 'blob' : 'tree'}/${longHash}/${relativeFilePath}`;
 
-        return { longHash, shortHash, lastMod, repoLink, error: false };
+        return { relativeFilePath, longHash, shortHash, lastMod, repoLink, error: false };
     } catch (error) {
         console.error('Failed to get git data:', error);
         return { error: true };
@@ -41,6 +42,7 @@ let footerData;
 
 if (showFooter) {
     footerData = await getGitFooterData(filepath);
+    console.log("\n", footerData);
 }
 ---
 <footer data-nosnippet>
