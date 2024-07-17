@@ -87,5 +87,6 @@ def isValidBST(self, root: Optional[TreeNode]) -> bool:
 
 ### Related Topics
 
+- [Tree Traversals](/writing/tree-traversals)
 - [Graph Algorithms](/writing/graphs)
 - [A\*](/writing/a-star)
