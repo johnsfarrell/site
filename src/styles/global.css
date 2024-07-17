@@ -92,9 +92,12 @@ img {
   width: 100%;
   height: auto;
   max-height: 15em;
-  animation: load 0.3s ease;
-  mix-blend-mode: multiply;
   object-fit: contain;
+}
+
+img:not(#me img) {
+  mix-blend-mode: multiply;
+  animation: load 0.3s ease;
 }
 
 @keyframes load {

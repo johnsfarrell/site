@@ -1,6 +1,6 @@
 ---
 import Base from '../layouts/Base.astro';
-import { SITE_EMAIL, SOCIAL_MEDIA } from "../consts";
+import { SITE_EMAIL, SOCIAL_MEDIA, IMAGES } from "../consts";
 import { Image } from 'astro:assets';
 
 const filepath = "./src/pages/index.astro";
@@ -8,10 +8,10 @@ const filepath = "./src/pages/index.astro";
 
 <Base filepath={filepath}>
 	<div class="container">
-		<div class="me">
-			<a href={SOCIAL_MEDIA.linkedin}>
-				<Image src="/images/me.jpg" id="me" alt="me" width={800} height={800} />
-			</a>
+		<div id="me" class="load">
+			<Image src={IMAGES[0].src} alt="me" width={100} height={100} />
+			<div class="img-container"></div>
+			<label><span class="left">&#60;</span><label>{IMAGES[0].label}</label><span class="right">&#62;</span></label>
 		</div>
 		<div class="description">
 			<br />
@@ -29,47 +29,113 @@ const filepath = "./src/pages/index.astro";
 			The small team sizes and fast-paced environments at these companies gave me the opportunity and resources to work on a <a href="/cv#experience">variety of projects</a>. This summer I am working as a mobile development intern at <a href="https://billmax.com/">BillMax</a> and a research assistant for Brown Unveristy Professor and New York Time's Best Seller <a href="https://www.brown.edu/academics/population-studies/people/person/emily-oster">Emily Oster</a>, developing <a href="https://zelma.ai">Zelma AI</a>!
 		</div>
 	</div>
+	<hr>
 	<div class="contact">
-		<h2>Contact</h2>
-		<p>
-			Please feel free to reach me at <a href={"mailto:" + SITE_EMAIL}>{SITE_EMAIL}</a>. Here are my <a href={"mailto:" + SITE_EMAIL}>email</a>, <a href={SOCIAL_MEDIA.github}>github</a>, <a href={SOCIAL_MEDIA.linkedin}>linkedin</a>, and <a href={SOCIAL_MEDIA.instagram}>instagram</a>.
-		</p>
+		Please feel free to reach me at <a href={"mailto:" + SITE_EMAIL}>{SITE_EMAIL}</a>. Here are my <a href={"mailto:" + SITE_EMAIL}>email</a>, <a href={SOCIAL_MEDIA.github}>github</a>, <a href={SOCIAL_MEDIA.linkedin}>linkedin</a>, and <a href={SOCIAL_MEDIA.instagram}>instagram</a>.
 	</div>
 </Base>
 
 <style>
+	.contact {
+		font-size: smaller;
+		font-size: 0.85em;
+		text-align: center;
+	}
+
+	hr {
+		margin: 2em;
+		border-radius: 2px;
+		border: 1px solid rgba(0, 0, 0, 0.1);
+	}
+
 	.description {
 		text-wrap: wrap;
 	}
-	img {
-		object-fit: cover;
-		height: 12em;
-		width: 15em;
-		float: right;
-		border-radius: 1em;
-		margin: 2em 2em 0.5em 2em;
-		transform: rotate(2deg);
-		transition: 0.15s ease;
-		box-shadow: 0 0 2em rgba(0,0,0,0.5);
+
+	#me label span {
+		font-size: 1.5em;
+		opacity: 0;
+		transition: 0.4s ease;
 	}
-	img:hover {
-		scale: 1.1;
-		box-shadow: 0 0 0.5em rgba(0,0,0,0.25);
+
+	#me .img-container {
+		border-radius: 0.05em;
+		box-shadow: inset 0 0 0.5em rgba(0,0,0,0.5);
+		height: 160px;
+		width: 160px;
+		position: absolute;
+		top: 0.5em;
+		z-index: 100;
+		border: 0.1em solid rgba(0,0,0,0.1);
+		margin: -0.1em;
+	}
+
+	#me:hover label span {
+		opacity: 0.5;
+		padding: 0 0.25em;
+	}
+
+	#me:active label span.right {
+		transform: translateX(0.25em);
+	}
+	#me:hover label span.right {
+		opacity: 1;
+	}
+
+	#me label {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		font-family: 'Delicious Handrawn', 'Reddit Sans', sans-serif;
+		color: rgba(0,0,0,0.5);
+		height: 2em;
+		font-size: 0.8em;
 		cursor: pointer;
 	}
+	#me img {
+		border-radius: 0.05em;
+		aspect-ratio: 1/1;
+		transform: rotate(0deg);
+	}
+	#me img::after {
+		box-shadow: inset 3px 3px 10px 0 #000000;
+	}
+	#me {
+		box-shadow: inset 0 0 0.5em rgba(0,0,0,0.25), 0 0 2em rgba(0,0,0,0.25);
+		border-top: 2px solid rgba(0, 0, 0, 0.1);
+		border-left: 2px solid rgba(0,0,0,0.2);
+		border-right: 2px solid rgba(0,0,0,0.2);
+		border-bottom: 2px solid rgba(0,0,0,0.3);
+		padding: 0.5em 0.5em 0.25em 0.5em;
+		height: 12em;
+		width: 10em;
+		float: right;
+		border-radius: 0.1em;
+		margin: 2em 2em 1em 2em;
+		transform: rotate(2deg);
+		transition: 0.15s ease;
+		cursor: pointer;
+	}
+	#me:hover {
+		scale: 1.1;
+	}
 	@media (max-width: 600px) {
-		img {
-			display: none;
+		#me {
+			margin: auto;
+			margin-top: 2em;
+			float: unset;
 		}
 	}
 </style>
 
 <script>
+	import { IMAGES } from "../consts";
+
 	// Source: https://armandocanals.com/posts/CSS-transform-rotating-a-3D-object-perspective-based-on-mouse-position.html
 	// (inspiration): https://github.com/jchen/site/blob/0ade8a3e5f174563974574eaf2cfc6b90cdf9bae/src/components/Fortune/Fortune.astro
 	let constrain = 150;
 	let mouseOverContainer = document.getElementsByTagName("html")[0];
-	let rotationalContainer = document.getElementById("me");
+	let rotationalContainer = document.getElementById("me")!;
 
 	mouseOverContainer.onmousemove = function (e) {
 		rotationalContainer && window.requestAnimationFrame(function () {
@@ -80,4 +146,19 @@ const filepath = "./src/pages/index.astro";
 			rotationalContainer.style.transform = transformation;
 		});
 	};
+
+	// Cycle through images on polaroid
+	let img = document.getElementsByTagName("img")[0];
+	let label = document.getElementsByTagName("label")[1];
+	let animation_duration = 500;
+	let auto_cycle = true;
+	function cycle(stop_auto_cycle = false) {
+		if (stop_auto_cycle) auto_cycle = false;
+		IMAGES.push(IMAGES.shift()!);
+		[img, label].forEach(e => e.animate([{ opacity: 1 }, { opacity: 0 }, { opacity: 1 }], { duration: animation_duration }));
+		setTimeout(() => {  img.src = IMAGES[0].src; label.innerHTML = IMAGES[0].label; }, animation_duration / 2);
+	}
+	setInterval(() => auto_cycle && cycle(), 4000);
+	rotationalContainer.onclick = () => cycle(true);
+	document.onkeydown = e => e.key === "ArrowRight" && cycle(true);
 </script>

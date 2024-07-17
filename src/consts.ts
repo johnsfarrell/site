@@ -1,6 +1,3 @@
-// Place any global data in this file.
-// You can import this data from anywhere in your site by using the `import` keyword.
-
 export const SITE_TITLE = "John Farrell";
 export const SITE_DESCRIPTION = "Computer science student at Brown University";
 export const SITE_AUTHOR = "John Farrell";
@@ -13,3 +10,16 @@ export const SOCIAL_MEDIA = {
   linkedin: "https://www.linkedin.com/in/johnsfarrell/",
   instagram: "https://www.instagram.com/jahn_farrell/",
 };
+
+export const IMAGES = [
+  { src: "/images/kennett_square.jpg", label: "kennett square, pa" },
+  { src: "/images/royersford.jpg", label: "royersford, pa" },
+  { src: "/images/providence_2.jpg", label: "providence, ri" },
+  { src: "/images/albuquerque.jpg", label: "albuquerque, nm" },
+  { src: "/images/boston.jpg", label: "boston, ma" },
+  { src: "/images/boulder.jpg", label: "boulder, co" },
+  { src: "/images/providence.jpg", label: "providence, ri" },
+  { src: "/images/nyc.jpg", label: "new york, ny" },
+  { src: "/images/san_francisco.jpg", label: "san francisco, ca" },
+  { src: "/images/providence_3.jpg", label: "providence, ri" },
+];
