@@ -63,27 +63,25 @@ const footerData = await getGitFooterData(filepath).catch(() => null);
         position: relative;
     }
 
-    @keyframes loading {
-        to { opacity: 0; transform: rotateX(-75deg) translateY(-50px); }
-    }
-
-    @keyframes loaded {
-        to { opacity: 1; transform: rotateX(0) translateY(0px)}
-    }
-
     #loading, #loaded {
         position: absolute;
         top: 0;
+        height: 0;
         transition: opacity 0.2s ease-in-out;
     }
-
     #loading {
-        animation: loading 0.3s 1.5s forwards;
+        animation: loading 0.5s 1.5s forwards;
     }
-
     #loaded {
         opacity: 0;
-        transform: rotateX(-70deg) translateY(50px);
-        animation: loaded 0.3s 1.5s forwards;
+        transform: rotateX(-70deg) translateY(25px);
+        animation: loaded 0.5s 1.5s forwards;
+    }
+
+    @keyframes loading {
+        to { opacity: 0; transform: rotateX(-75deg) translateY(-50px); }
+    }
+    @keyframes loaded {
+        to { opacity: 1; transform: rotateX(0) translateY(0px)}
     }
 </style>
