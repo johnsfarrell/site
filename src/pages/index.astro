@@ -131,6 +131,11 @@ const filepath = "./src/pages/index.astro";
 <script>
 	import { IMAGES } from "../consts";
 
+	IMAGES.forEach(image => {
+		const img = new Image();
+		img.src = image.src;
+	});
+
 	// Source: https://armandocanals.com/posts/CSS-transform-rotating-a-3D-object-perspective-based-on-mouse-position.html
 	// (inspiration): https://github.com/jchen/site/blob/0ade8a3e5f174563974574eaf2cfc6b90cdf9bae/src/components/Fortune/Fortune.astro
 	let constrain = 150;
