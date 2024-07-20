@@ -31,6 +31,11 @@ jobs:
           path: .
           node-version: 18.14.1
           package-manager: bun@1.1.10
+      - name: Set up environment variables
+        run: |
+          echo "STRAVA_CLIENT_ID=${{ secrets.STRAVA_CLIENT_ID }}" >> $GITHUB_ENV
+          echo "STRAVA_CLIENT_SECRET=${{ secrets.STRAVA_CLIENT_SECRET }}" >> $GITHUB_ENV
+          echo "STRAVA_REFRESH_TOKEN=${{ secrets.STRAVA_REFRESH_TOKEN }}" >> $GITHUB_ENV
 
   deploy:
     needs: build
