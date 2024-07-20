@@ -9,9 +9,12 @@ html a:hover {
   text-decoration: underline;
 }
 
+html {
+  background-color: rgb(245, 245, 245);
+}
+
 html,
 body {
-  background-color: rgb(245, 245, 245);
   color: rgba(0, 0, 0, 0.92);
   height: 100%;
   margin: 0;
