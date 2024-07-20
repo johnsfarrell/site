@@ -160,10 +160,10 @@ const animationStyle = animationStyles[styleIndex];
     }
 
     .grid-item {
-        width: calc(100% - 2px);
-        aspect-ratio: 1;
+        width: calc(100% - 3px);
         border-radius: 3px;
-        border: 1px solid rgb(245, 245, 245);
+        border: 1.5px solid rgb(245, 245, 245);
+        aspect-ratio: 1;
         transition: scale 0.2s;
         transform: scale(0);
         text-wrap: nowrap;
@@ -209,6 +209,7 @@ const animationStyle = animationStyles[styleIndex];
     @media (max-width: 830px) {
         .grid-container {
             grid-template-rows: repeat(7, 1fr);
+            padding: 0 1em;
         }
     }
 
