@@ -12,6 +12,24 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const { title, description, image = '/images/me.jpg' } = Astro.props;
 ---
 
+<!-- Fonts -->
+
+<link rel="preload" href="/fonts/DeliciousHandrawn-Regular.ttf" as="font" type="font/ttf" crossorigin />
+<link rel="preload" href="/fonts/RedditSans-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
+	
+<style>
+	@font-face {
+		font-family: "Delicious Handrawn";
+		font-display: swap;
+		src: url(fonts/DeliciousHandrawn-Regular.ttf) format("truetype");
+	}
+	@font-face {
+		font-family: "Reddit Sans";
+		font-display: swap;
+		src: url(fonts/RedditSans-VariableFont_wght.ttf) format("truetype");
+	}
+</style>
+
 <!-- Global Metadata -->
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
@@ -35,22 +53,3 @@ const { title, description, image = '/images/me.jpg' } = Astro.props;
 
 <!-- K(L)atex -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css" integrity="sha384-WsHMgfkABRyG494OmuiNmkAOk8nhO1qE+Y6wns6v+EoNoTNxrWxYpl5ZYWFOLPCM" crossorigin="anonymous">
-
-<!-- Fonts -->
-
-<link rel="preload" href="/fonts/DeliciousHandrawn-Regular.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
-
-<style>
-	@font-face {
-	  font-family: 'Delicious Handrawn';
-	  font-display: swap;
-	  src: url(fonts/DeliciousHandrawn-Regular.ttf) format('truetype');
-	}
-	@font-face {
-	  font-family: 'Reddit Sans';
-	  font-display: swap;
-	  src: url(fonts/RedditSans-VariableFont_wght.ttf) format('truetype');
-	}
-</style>
-	
