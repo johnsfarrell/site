@@ -95,6 +95,34 @@ function getRandom() {
     return (Math.random() - 0.5) * 2;
 }
 
+const animationStyles = [
+    (index: number) => ({
+        animation: 'basicScale 0.4s forwards',
+        animationDelay: `${index % 31 * 0.04}s`,
+        translate: `${getRandom() * 20}px ${getRandom() * 20}px`,
+    }),
+    (_: number) => ({
+        animation: 'basicScale 0.4s forwards',
+        animationDelay: `${Math.abs(getRandom()) * 1.125}s`,
+        translate: `${getRandom() * 10}px ${getRandom() * 10}px`,
+    }),
+    (_: number) => ({
+        animation: 'pulseScale 0.4s forwards',
+        animationDelay: `${Math.abs(getRandom()) * 1.125}s`,
+    }),
+    (index: number) => ({
+        animation: 'pulseScale 0.4s forwards',
+        animationDelay: `${(Math.abs(index % 7 - 3) + Math.abs(Math.floor(index / 7) - 26)) * 0.04}s`,
+    }),
+    (index: number) => ({
+        animation: 'pulseScale 0.4s forwards',
+        animationDelay: `${(index / 10 + index % 7) * 0.03}s`,
+    }),
+]
+
+const styleIndex = Math.floor(Math.random() * animationStyles.length);
+const animationStyle = animationStyles[styleIndex];
+
 ---
 
 <div class="grid-container">
@@ -103,8 +131,7 @@ function getRandom() {
       class="grid-item" 
       style={{ 
         backgroundColor: getColor(data[1], min_miles, max_miles), 
-        animationDelay: `${index * 0.002}s`,
-        translate: `${getRandom() * 10}px ${getRandom() * 10}px`,
+        ...animationStyle(index),
         '--tooltip-content': tooltipContent(data)
       }}
     ></div>
@@ -129,14 +156,10 @@ function getRandom() {
         border-radius: 3px;
         border: 1.5px solid rgb(245, 245, 245);
         transition: scale 0.2s;
-        animation: scaleIn 0.4s forwards;
         transform: scale(0);
         text-wrap: nowrap;
         position: relative;
     }
-
-    @keyframes scaleIn { 
-        100% { transform: scale(1); translate: 0px; } }
 
     .grid-item:hover {
         scale: 1.2;
@@ -176,5 +199,15 @@ function getRandom() {
         hr {
             display: none;
         }
+    }
+
+    /* animations */
+    @keyframes pulseScale { 
+        50% { transform: scale(1.5); }
+        100% { transform: scale(1); translate: 0px; }
+    }
+
+    @keyframes basicScale { 
+        100% { transform: scale(1); translate: 0px; }
     }
 </style>
