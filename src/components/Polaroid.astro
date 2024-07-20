@@ -3,7 +3,7 @@ import { IMAGES } from "../consts";
 import { Image } from 'astro:assets';
 ---
 
-<div id="me" class="load">
+<div id="polaroid">
     <Image src={IMAGES[0].src} alt="me" width={100} height={100} />
     <div class="img-container"></div>
     <label><span class="left">&#60;</span><label>{IMAGES[0].label}</label><span class="right">&#62;</span></label>
@@ -11,13 +11,13 @@ import { Image } from 'astro:assets';
 		
 
 <style>
-	#me label span {
+	#polaroid label span {
 		font-size: 1.5em;
 		opacity: 0;
 		transition: 0.4s ease;
 	}
 
-	#me .img-container {
+	#polaroid .img-container {
 		border-radius: 0.05em;
 		box-shadow: inset 0 0 0.5em rgba(0,0,0,0.5);
 		height: 160px;
@@ -29,41 +29,41 @@ import { Image } from 'astro:assets';
 		margin: -0.1em;
 	}
 
-	#me:hover label span {
+	#polaroid:hover label span {
 		opacity: 0.5;
 		padding: 0 0.25em;
 	}
 
-	#me:active label span.right {
+	#polaroid:active label span.right {
 		transform: translateX(0.25em);
 	}
 
-	#me:hover label span.right {
+	#polaroid:hover label span.right {
 		opacity: 1;
 	}
 
-	#me label {
+	#polaroid label {
 		display: flex;
 		justify-content: space-between;
 		align-items: center;
-		font-family: 'Delicious Handrawn', 'Reddit Sans', sans-serif;
+		font-family: 'Delicious Handrawn', sans-serif;
 		color: rgba(0,0,0,0.5);
 		height: 2em;
 		font-size: 0.8em;
 		cursor: pointer;
 	}
 
-	#me img {
+	#polaroid img {
 		border-radius: 0.05em;
 		aspect-ratio: 1/1;
 		transform: rotate(0deg);
 	}
 
-	#me img::after {
+	#polaroid img::after {
 		box-shadow: inset 3px 3px 10px 0 #000000;
 	}
 
-	#me {
+	#polaroid {
 		box-shadow: inset 0 0 0.5em rgba(0,0,0,0.25), 0 0 2em rgba(0,0,0,0.25);
 		border-top: 2px solid rgba(0, 0, 0, 0.1);
 		border-left: 2px solid rgba(0,0,0,0.2);
@@ -78,14 +78,15 @@ import { Image } from 'astro:assets';
 		transform: rotate(2deg);
 		transition: 0.15s ease;
 		cursor: pointer;
+		opacity: 0;
 	}
 
-	#me:hover {
+	#polaroid:hover {
 		scale: 1.1;
 	}
 
 	@media (max-width: 600px) {
-		#me {
+		#polaroid {
 			margin: auto;
 			margin-top: 2em;
 			float: unset;
@@ -105,7 +106,7 @@ import { Image } from 'astro:assets';
 	// (inspiration): https://github.com/jchen/site/blob/0ade8a3e5f174563974574eaf2cfc6b90cdf9bae/src/components/Fortune/Fortune.astro
 	let constrain = 150;
 	let mouseOverContainer = document.getElementsByTagName("html")[0];
-	let rotationalContainer = document.getElementById("me")!;
+	let rotationalContainer = document.getElementById("polaroid")!;
 
 	mouseOverContainer.onmousemove = function (e) {
 		rotationalContainer && window.requestAnimationFrame(function () {
@@ -131,4 +132,6 @@ import { Image } from 'astro:assets';
 	setInterval(() => auto_cycle && cycle(), 4000);
 	rotationalContainer.onclick = () => cycle(true);
 	document.onkeydown = e => e.key === "ArrowRight" && cycle(true);
+
+	rotationalContainer.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 400, fill: "forwards" });
 </script>

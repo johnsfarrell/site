@@ -104,7 +104,7 @@ img {
   object-fit: contain;
 }
 
-img:not(#me img) {
+img:not(#polaroid img) {
   mix-blend-mode: multiply;
   animation: load 0.3s ease;
 }

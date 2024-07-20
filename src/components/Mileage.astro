@@ -35,6 +35,7 @@ async function fetchMileage() {
         const key = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
         mileage[key] = 0;
     }
+    if (import.meta.env.MODE !== 'production') return mileage;
     const bearer = await getBearerToken();
     let i = 1;
     let pagedMileage = await getPage(i, bearer);
@@ -43,20 +44,16 @@ async function fetchMileage() {
             const utcDate = new Date(Date.parse(data.start_date));
             const estDate = new Date(utcDate.getTime() - 5 * 60 * 60 * 1000); // EST (UTC - 5 hours)
             const key = `${estDate.getFullYear()}-${estDate.getMonth()+1}-${estDate.getDate()}`;
-            if (key in mileage) {
-                mileage[key] += data.distance;
-            }
+            if (key in mileage) mileage[key] += data.distance;
         }
-        i++;
-        pagedMileage = await getPage(i, bearer);
+        pagedMileage = await getPage(++i, bearer);
     }
     return mileage;
 }
 
 let mileageMap = await fetchMileage();
 let mileage = Object.entries(mileageMap).map(([key, value]) => [new Date(key).getTime(), value]);
-// sort mileage by date
-mileage.sort((a, b) => a[0] - b[0]);
+mileage.sort((a, b) => a[0] - b[0]); // sort mileage by date
 
 // prepend days to mileage until first day is Sunday
 while (new Date(mileage[0][0]).getDay() !== 0) {
@@ -94,6 +91,10 @@ function tooltipContent(data: number[]) {
     return data[1] === -1 ? 'none' : `'${formatMileage(data[1])} miles ran on ${formatTimestamp(data[0])}'`
 }
 
+function getRandom() {
+    return (Math.random() - 0.5) * 2;
+}
+
 ---
 
 <div class="grid-container">
@@ -102,7 +103,8 @@ function tooltipContent(data: number[]) {
       class="grid-item" 
       style={{ 
         backgroundColor: getColor(data[1], min_miles, max_miles), 
-        animationDelay: `${index * 0.001 + 0.2}s`,
+        animationDelay: `${index * 0.002}s`,
+        translate: `${getRandom() * 10}px ${getRandom() * 10}px`,
         '--tooltip-content': tooltipContent(data)
       }}
     ></div>
@@ -114,7 +116,7 @@ function tooltipContent(data: number[]) {
 <style>
     .grid-container {
         display: grid;
-        grid-template-rows: repeat(7, 1em);
+        grid-template-rows: repeat(7, calc(1em - 1px));
         grid-template-columns: repeat(auto-fill, minmax(calc(100% / 52), 1fr));
         grid-auto-flow: column;
         justify-content: center;
@@ -127,17 +129,22 @@ function tooltipContent(data: number[]) {
         border-radius: 3px;
         border: 1.5px solid rgb(245, 245, 245);
         transition: scale 0.2s;
-        animation: scaleIn 0.2s forwards;
+        animation: scaleIn 0.4s forwards;
         transform: scale(0);
         text-wrap: nowrap;
         position: relative;
     }
 
-    @keyframes scaleIn { to { transform: scale(1); } }
+    @keyframes scaleIn { 
+        100% { transform: scale(1); translate: 0px; } }
 
     .grid-item:hover {
         scale: 1.2;
         z-index: 1;
+    }
+
+    .grid-item:active {
+        scale: 1;
     }
 
     .grid-item:hover::after {
