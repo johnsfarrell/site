@@ -98,30 +98,39 @@ function getRandom() {
 const animationStyles = [
     (index: number) => ({
         animation: 'basicScale 0.4s forwards',
-        animationDelay: `${index % 31 * 0.04}s`,
+        animationDelay: `${index % 31 * 0.03667}s`,
         translate: `${getRandom() * 20}px ${getRandom() * 20}px`,
     }),
     (_: number) => ({
         animation: 'basicScale 0.4s forwards',
-        animationDelay: `${Math.abs(getRandom()) * 1.125}s`,
+        animationDelay: `${Math.abs(getRandom()) * 1.103}s`,
         translate: `${getRandom() * 10}px ${getRandom() * 10}px`,
     }),
     (_: number) => ({
         animation: 'pulseScale 0.4s forwards',
-        animationDelay: `${Math.abs(getRandom()) * 1.125}s`,
+        animationDelay: `${Math.abs(getRandom()) * 1.103}s`,
     }),
     (index: number) => ({
         animation: 'pulseScale 0.4s forwards',
-        animationDelay: `${(Math.abs(index % 7 - 3) + Math.abs(Math.floor(index / 7) - 26)) * 0.04}s`,
+        animationDelay: `${(Math.abs(index % 7 - 3) + Math.abs(Math.floor(index / 7) - 26)) * 0.03794}s`,
     }),
     (index: number) => ({
         animation: 'pulseScale 0.4s forwards',
-        animationDelay: `${(index / 10 + index % 7) * 0.03}s`,
+        animationDelay: `${(index / 10 + index % 7) * 0.025582}s`,
     }),
 ]
 
 const styleIndex = Math.floor(Math.random() * animationStyles.length);
 const animationStyle = animationStyles[styleIndex];
+
+// DEBUG: find max delay for each style to match them (currently matched to 1.1s)
+// for (let styleIndex = 0; styleIndex < animationStyles.length; styleIndex++) {
+//     let max_delay = 0;
+//     for (let index = 0; index < mileage.length; index++) {
+//         max_delay = Math.max(max_delay, parseFloat(animationStyles[styleIndex](index).animationDelay.split("s")[0]) * 1000);
+//     }
+//     console.log(`Style ${styleIndex} has a max delay of ${max_delay}ms`);
+// }
 
 ---
 
