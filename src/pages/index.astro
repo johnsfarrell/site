@@ -29,7 +29,12 @@ const filepath = "./src/pages/index.astro";
 	<hr>
 	<Mileage />
 	<div class="contact">
-		Please feel free to reach me at <a href={"mailto:" + SITE_EMAIL}>{SITE_EMAIL}</a>. Here are my <a href={"mailto:" + SITE_EMAIL}>email</a>, <a href={SOCIAL_MEDIA.github}>github</a>, <a href={SOCIAL_MEDIA.linkedin}>linkedin</a>, and <a href={SOCIAL_MEDIA.instagram}>instagram</a>.
+		<span>
+			Please feel free to reach me at <a href={"mailto:" + SITE_EMAIL}>{SITE_EMAIL}</a>. 
+		</span>
+		<span>
+			Here are my <a href={"mailto:" + SITE_EMAIL}>email</a>, <a href={SOCIAL_MEDIA.github}>github</a>, <a href={SOCIAL_MEDIA.linkedin}>linkedin</a>, and <a href={SOCIAL_MEDIA.instagram}>instagram</a>.
+		</span>
 	</div>
 </Base>
 
@@ -46,5 +51,11 @@ const filepath = "./src/pages/index.astro";
 
 	hr {
 		margin: 1em;
+	}
+
+	@media (max-width: 725px) {
+		.contact span {
+			display: block;
+		}
 	}
 </style>
