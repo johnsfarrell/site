@@ -19,6 +19,10 @@ permissions:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      STRAVA_CLIENT_ID: ${{ secrets.STRAVA_CLIENT_ID }}
+      STRAVA_CLIENT_SECRET: ${{ secrets.STRAVA_CLIENT_SECRET }}
+      STRAVA_REFRESH_TOKEN: ${{ secrets.STRAVA_REFRESH_TOKEN }}
     steps:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
@@ -31,11 +35,6 @@ jobs:
           path: .
           node-version: 18.14.1
           package-manager: bun@1.1.10
-      - name: Set up environment variables
-        run: |
-          echo "STRAVA_CLIENT_ID=${{ secrets.STRAVA_CLIENT_ID }}" >> $GITHUB_ENV
-          echo "STRAVA_CLIENT_SECRET=${{ secrets.STRAVA_CLIENT_SECRET }}" >> $GITHUB_ENV
-          echo "STRAVA_REFRESH_TOKEN=${{ secrets.STRAVA_REFRESH_TOKEN }}" >> $GITHUB_ENV
 
   deploy:
     needs: build
