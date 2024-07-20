@@ -40,9 +40,12 @@ async function fetchMileage() {
     let pagedMileage = await getPage(i, bearer);
     while (pagedMileage.length > 0) {
         for (let data of pagedMileage) {
-            const date = new Date(Date.parse(data.start_date));
-            const key = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
-            if (key in mileage) mileage[key] += data.distance;
+            const utcDate = new Date(Date.parse(data.start_date));
+            const estDate = new Date(utcDate.getTime() - 5 * 60 * 60 * 1000); // EST (UTC - 5 hours)
+            const key = `${estDate.getFullYear()}-${estDate.getMonth()+1}-${estDate.getDate()}`;
+            if (key in mileage) {
+                mileage[key] += data.distance;
+            }
         }
         i++;
         pagedMileage = await getPage(i, bearer);
