@@ -17,6 +17,8 @@ async function execShellCommand(cmd: string): Promise<string> {
 }
 
 async function getGitFooterData(filepath: string) {
+    if (import.meta.env.MODE !== 'production') return null;
+
     const relativeFilePath = await execShellCommand(`git ls-files --full-name ${filepath}`);
     const [longHash, shortHash, lastModEpoch] = await Promise.all([
         execShellCommand(`git log -n 1 --pretty=format:%H  -- ${relativeFilePath}`),
