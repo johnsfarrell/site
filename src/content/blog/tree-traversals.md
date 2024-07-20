@@ -4,7 +4,7 @@ description: "The main tree traversal algorithms: Inorder, Preorder, and Postord
 pubDate: "July 17, 2024"
 ---
 
-This is a review of popular tree traversals: **Inorder Traversal**, **Preorder Traversal**, and **Postorder Traversal**.
+This is a review of popular tree traversals: **Preorder Traversal**, **Postorder Traversal**, and **Inorder Traversal**.
 
 <hr>
 
