@@ -18,9 +18,6 @@ const { title, description, image = '/images/me.jpg' } = Astro.props;
 <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
 <meta name="generator" content={Astro.generator} />
 
-<!-- Font preloads -->
-<!-- <link rel="preload" href="/fonts/atkinson-regular.woff" as="font" type="font/woff" crossorigin /> -->
-
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
 
@@ -36,23 +33,24 @@ const { title, description, image = '/images/me.jpg' } = Astro.props;
 <meta property="og:description" content={description} />
 <meta property="og:image" content={new URL(image, Astro.url)} />
 
+<!-- K(L)atex -->
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css" integrity="sha384-WsHMgfkABRyG494OmuiNmkAOk8nhO1qE+Y6wns6v+EoNoTNxrWxYpl5ZYWFOLPCM" crossorigin="anonymous">
 
-<!-- Font
-<style>
-	@import url('https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap');
-</style> -->
+<!-- Fonts -->
 
-<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
- <link
-	href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap"
-	rel="preload"
-	as="style"
-	crossorigin
-/>
-<link
-	href="https://fonts.googleapis.com/css2?family=Delicious+Handrawn&family=Reddit+Sans:ital,wght@0,200..900;1,200..900&display=swap"
-	rel="stylesheet"
-/>
+<link rel="preload" href="/fonts/DeliciousHandrawn-Regular.ttf" as="font" type="font/ttf" crossorigin />
+<link rel="preload" href="/fonts/RedditSans-VariableFont_wght.ttf" as="font" type="font/ttf" crossorigin />
+
+<style>
+	@font-face {
+	  font-family: 'Delicious Handrawn';
+	  font-display: swap;
+	  src: url(fonts/DeliciousHandrawn-Regular.ttf) format('truetype');
+	}
+	@font-face {
+	  font-family: 'Reddit Sans';
+	  font-display: swap;
+	  src: url(fonts/RedditSans-VariableFont_wght.ttf) format('truetype');
+	}
+</style>
 	
