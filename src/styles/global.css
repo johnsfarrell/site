@@ -13,6 +13,12 @@ html {
   background-color: rgb(245, 245, 245);
 }
 
+hr {
+  margin: 1em 0;
+  border-radius: 2px;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
 html,
 body {
   color: rgba(0, 0, 0, 0.92);
