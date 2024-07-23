@@ -3,9 +3,11 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
-  workflow_dispatch:
   schedule:
     - cron: "0 * * * *" # Scheduled deployment every hour
+  repository_dispatch:
+    types:
+      - webhook
 
 # Allow this job to clone the repo and create a page deployment
 permissions:
