@@ -34,20 +34,26 @@ async function getGitFooterData(filepath: string) {
     const gitCommand = `git log -n 1 --pretty=format:%ct -- ${relativeFilePath}`;
     const repoLink = `https://github.com/${GITHUB_REPO}/${relativeFilePath ? 'blob' : 'tree'}/${longHash}/${relativeFilePath}`;
 
-    return { relativeFilePath, gitCommand, longHash, shortHash, lastMod, repoLink };
+    const runId = import.meta.env.GITHUB_RUN_ID;
+
+    const runNumber = import.meta.env.GITHUB_RUN_NUMBER;
+
+    const runLink = `https://github.com/${GITHUB_REPO}/actions/runs/${runId}`;
+
+    const deployDate = new Date().toLocaleDateString('en-GB', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric',
+        timeZone: 'America/New_York',
+        hour: 'numeric',
+        minute: 'numeric',
+        hour12: true,
+    });
+
+    return { relativeFilePath, gitCommand, longHash, shortHash, lastMod, repoLink, runLink, runNumber, deployDate };
 }
 
 const footerData = await getGitFooterData(filepath).catch(() => null);
-
-const deployDate = new Date().toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'long',
-    year: 'numeric',
-    timeZone: 'America/New_York',
-    hour: 'numeric',
-    minute: 'numeric',
-    hour12: true,
-});
 ---
 
 <footer data-nosnippet>{footerData ?
@@ -59,7 +65,11 @@ const deployDate = new Date().toLocaleDateString('en-GB', {
         <a href={footerData.repoLink} target="_blank">@{footerData.shortHash}</a>
         on {footerData.lastMod} &#60;3
     </div>
-    <div class="hover-reveal">deployed on {deployDate}</div>
+    <div class="hover-reveal">
+        last deployed 
+        <a href={footerData.runLink} target="_blank">#{footerData.runNumber}</a>
+        on {footerData.deployDate}
+    </div>
     : <>&#60;3</>}
 </footer>
 
