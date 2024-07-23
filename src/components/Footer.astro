@@ -38,6 +38,16 @@ async function getGitFooterData(filepath: string) {
 }
 
 const footerData = await getGitFooterData(filepath).catch(() => null);
+
+const deployDate = new Date().toLocaleDateString('en-GB', {
+    day: 'numeric',
+    month: 'long',
+    year: 'numeric',
+    timeZone: 'America/New_York',
+    hour: 'numeric',
+    minute: 'numeric',
+    hour12: true,
+});
 ---
 
 <footer data-nosnippet>{footerData ?
@@ -47,8 +57,9 @@ const footerData = await getGitFooterData(filepath).catch(() => null);
     <div id="loaded">
         last updated
         <a href={footerData.repoLink} target="_blank">@{footerData.shortHash}</a>
-        on {footerData.lastMod}. &#60;3
+        on {footerData.lastMod} &#60;3
     </div>
+    <div class="hover-reveal">deployed on {deployDate}</div>
     : <>&#60;3</>}
 </footer>
 
@@ -81,10 +92,20 @@ const footerData = await getGitFooterData(filepath).catch(() => null);
         animation: loaded 0.5s 1.5s forwards;
     }
 
+    .hover-reveal {
+        opacity: 0;
+        height: 0;
+        transition: all 0.2s 0.8s ease;
+    }
+    footer:hover .hover-reveal {
+        opacity: 1; 
+        height: 1em;
+    }
+
     @keyframes loading {
         to { opacity: 0; transform: rotateX(-75deg) translateY(-50px); }
     }
     @keyframes loaded {
-        to { opacity: 1; transform: rotateX(0) translateY(0px)}
+        to { opacity: 1; transform: rotateX(0) translateY(0px); }
     }
 </style>
