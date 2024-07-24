@@ -17,7 +17,7 @@ async function execShellCommand(cmd: string): Promise<string> {
 }
 
 async function getGitFooterData(filepath: string) {
-    if (import.meta.env.MODE !== 'production') return null;
+    // if (import.meta.env.MODE !== 'production') return null;
 
     const relativeFilePath = await execShellCommand(`git ls-files --full-name ${filepath}`);
     const [longHash, shortHash, lastModEpoch] = await Promise.all([
@@ -65,13 +65,19 @@ const footerData = await getGitFooterData(filepath).catch(() => null);
         <a href={footerData.repoLink} target="_blank">@{footerData.shortHash}</a>
         on {footerData.lastMod} &#60;3
     </div>
-    <div class="hover-reveal">
+    <div class="hover-reveal no-hover">
         last deployed 
         <a href={footerData.runLink} target="_blank">#{footerData.runNumber}</a>
         on {footerData.deployDate}
     </div>
     : <>&#60;3</>}
 </footer>
+
+<script>
+    setTimeout(() => {
+        document.querySelector('.hover-reveal')?.classList.remove('no-hover');
+    }, 1800);
+</script>
 
 <style>
     html a {
@@ -81,35 +87,39 @@ const footerData = await getGitFooterData(filepath).catch(() => null);
         color: rgba(0, 0, 0, 0.66);
     }
     html footer {
-        margin-top: 2em;
         font-size: smaller;
         color: rgba(0, 0, 0, 0.33);
         position: relative;
+        height: 2em;
+        padding-bottom: 0;
     }
 
     #loading, #loaded {
         position: absolute;
-        top: 0;
-        height: 0;
-        transition: opacity 0.2s ease-in-out;
+        top: 1em;
     }
     #loading {
         animation: loading 0.5s 1.5s forwards;
     }
     #loaded {
         opacity: 0;
-        transform: rotateX(-70deg) translateY(25px);
+        transform: rotateX(-90deg) translateY(25px);
         animation: loaded 0.5s 1.5s forwards;
+        transition: top 0.1s ease-in-out;
     }
 
     .hover-reveal {
-        opacity: 0;
-        height: 0;
         transition: all 0.2s ease;
+        opacity: 0;
+        scale: 0.85;
     }
-    footer:hover .hover-reveal {
-        opacity: 1; 
-        height: 1em;
+    
+    footer:hover .hover-reveal:not(.no-hover) {
+        opacity: 1;
+        scale: 1;
+    }
+    footer:hover #loaded{
+        top: 0em;
     }
 
     @keyframes loading {
