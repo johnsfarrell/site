@@ -7,7 +7,7 @@ on:
     - cron: "0 * * * *" # Scheduled deployment every hour
   repository_dispatch:
     types:
-      - webhook
+      - Strava Activity Upload
 
 # Allow this job to clone the repo and create a page deployment
 permissions:
