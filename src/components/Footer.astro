@@ -17,7 +17,7 @@ async function execShellCommand(cmd: string): Promise<string> {
 }
 
 async function getGitFooterData(filepath: string) {
-    // if (import.meta.env.MODE !== 'production') return null;
+    if (import.meta.env.MODE !== 'production') return null;
 
     const relativeFilePath = await execShellCommand(`git ls-files --full-name ${filepath}`);
     const [longHash, shortHash, lastModEpoch] = await Promise.all([
@@ -31,7 +31,7 @@ async function getGitFooterData(filepath: string) {
         year: 'numeric',
         timeZone: 'America/New_York',
     });
-    const gitCommand = `git log -n 1 --pretty=format:%ct -- ${relativeFilePath}`;
+    const gitCommand = `git log -n 1 -- ${relativeFilePath}`;
     const repoLink = `https://github.com/${GITHUB_REPO}/${relativeFilePath ? 'blob' : 'tree'}/${longHash}/${relativeFilePath}`;
 
     const runId = import.meta.env.GITHUB_RUN_ID;
@@ -90,8 +90,7 @@ const footerData = await getGitFooterData(filepath).catch(() => null);
         font-size: smaller;
         color: rgba(0, 0, 0, 0.33);
         position: relative;
-        height: 2em;
-        padding-bottom: 0;
+        margin-top: 1em;
     }
 
     #loading, #loaded {
