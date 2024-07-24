@@ -1,10 +1,10 @@
-name: Deploy to GitHub Pages
+name: Deploy Website
 
 on:
   push:
     branches: [main]
   schedule:
-    - cron: "0 * * * *" # Scheduled deployment every hour
+    - cron: "0 6 * * *"
   repository_dispatch:
     types:
       - Strava Activity Upload
