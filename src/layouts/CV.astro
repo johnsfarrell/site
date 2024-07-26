@@ -28,9 +28,6 @@ let resumeDate = new Date(parseInt(resumeLastMod) * 1000).toLocaleDateString('en
         <div class="content-wrap">
             <Header />
             <main>
-                <p>
-                    My résumé is available <a href="/resume.pdf">here</a>, updated {resumeDate}.
-                </p>
                 <slot />
             </main>
             <div class="grow"></div>
