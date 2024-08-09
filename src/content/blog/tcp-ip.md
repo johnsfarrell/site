@@ -6,7 +6,7 @@ pubDate: "Aug 8, 2024"
 
 This is a breakdown of different protocols in the TCP/IP Protocol Suite. The TCP/IP Protocol Suite is a set of protocols that are used to communicate over the internet. It is the most widely used protocol suite in the world, and is named after the two most important protocols, TCP (Transmission Control Protocol) and IP (Internet Protocol). Notes and visuals derived from this [introduction to networking course](https://www.coursera.org/learn/introduction-to-networking-nvidia) from Nvidia. For more on how networks themselves work, see my notes on [networks](/writing/networks).
 
-![Nvidia Banner](../img/tcp-ip/nvidia.png)
+<hr>
 
 ## Application Layer Protocols
 
