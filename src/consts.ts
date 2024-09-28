@@ -12,6 +12,7 @@ export const SOCIAL_MEDIA = {
 };
 
 export const IMAGES = [
+  { src: "/images/providence_4.jpg", label: "providence, ri" },
   { src: "/images/kennett_square.jpg", label: "kennett square, pa" },
   { src: "/images/royersford.jpg", label: "royersford, pa" },
   { src: "/images/providence_2.jpg", label: "providence, ri" },
