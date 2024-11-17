@@ -44,7 +44,7 @@ const path = require('path');
     });
 
     await page.pdf({
-        path: 'cv.pdf',
+        path: 'dist/cv/cv.pdf',
         format: 'A4',
         margin: {
             top: '0.5in',    

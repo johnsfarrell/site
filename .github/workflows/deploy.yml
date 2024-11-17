@@ -43,20 +43,13 @@ jobs:
           bun add puppeteer
           bun run src/scripts/generate-cv.js
 
-      - name: Upload PDF artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: cv-pdf
-          path: cv.pdf
-          
-      - name: Debug PDF location
-        run: ls -R
-
-      - name: Move PDF to dist
-        run: mv cv.pdf dist/
-
       - name: List files in dist
         run: ls -R dist
+
+      - name: Upload `dist/` for deployment
+        uses: actions/upload-pages-artifact@v1
+        with:
+          path: dist/
 
   deploy:
     needs: build
