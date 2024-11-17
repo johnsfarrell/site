@@ -5,7 +5,7 @@ const path = require('path');
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
 
-    const filePath = path.resolve(__dirname, 'dist/cv/index.html');
+    const filePath = path.resolve(__dirname, '../../dist/cv/index.html');
     await page.goto(`file://${filePath}`, { waitUntil: 'networkidle0' });
 
     await page.addStyleTag({
