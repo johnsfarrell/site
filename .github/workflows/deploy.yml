@@ -41,7 +41,7 @@ jobs:
       - name: Generate PDF with Puppeteer
         run: |
           bun add puppeteer
-          bun run generate-cv.js
+          bun run src/scripts/generate-cv.js
 
       - name: Upload PDF artifact
         uses: actions/upload-artifact@v3
