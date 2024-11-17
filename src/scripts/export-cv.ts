@@ -59,6 +59,14 @@ const pdfStyle = `
   a::after {
     content: '' !important;
   }
+  hr {
+    border-top: 0.5px solid rgba(0, 0, 0, 0.5) !important;
+    border-bottom: none !important;
+  }
+  blockquote,
+  blockquote p {
+      display: block;
+  }
 `;
 
 exportCV();
