@@ -38,19 +38,6 @@ jobs:
           node-version: 18.14.1
           package-manager: bun@1.1.10
 
-      - name: Generate PDF with Puppeteer
-        run: |
-          bun add puppeteer
-          bun run src/scripts/generate-cv.js
-
-      - name: List files in dist
-        run: ls -R dist
-
-      - name: Upload `dist/` for deployment
-        uses: actions/upload-pages-artifact@v1
-        with:
-          path: dist/
-
   deploy:
     needs: build
     runs-on: ubuntu-latest

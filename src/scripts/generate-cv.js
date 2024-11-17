@@ -43,8 +43,10 @@ const path = require('path');
         `,
     });
 
+    const savePath = 'dist/cv/cv.pdf';
+
     await page.pdf({
-        path: 'dist/cv/cv.pdf',
+        path: savePath,
         format: 'A4',
         margin: {
             top: '0.5in',    
@@ -54,6 +56,6 @@ const path = require('path');
         },
     });
 
-    console.log('PDF generated successfully at cv.pdf!');
+    console.log(`PDF generated at ${savePath}`);
     await browser.close();
 })();
