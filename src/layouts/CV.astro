@@ -3,19 +3,7 @@ import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
 import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION,SITE_TITLE } from '../consts';
-import child_process from 'child_process'
-
-let resumeLastMod = child_process
-    .execSync(`git log -n 1 --pretty=format:%ct -- public/resume.pdf`)
-    .toString()
-    .trim()
-
-let resumeDate = new Date(parseInt(resumeLastMod) * 1000).toLocaleDateString('en-GB', {
-    day: 'numeric',
-    month: 'numeric',
-    year: 'numeric',
-    timeZone: 'America/New_York',
-})
+import '../styles/cv.css';
 ---
 
 <html>

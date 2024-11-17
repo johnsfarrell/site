@@ -1,0 +1,88 @@
+main {
+    font-family: 'Times New Roman';
+    font-size: 1em;
+}
+
+main a {
+    color: rgb(0, 0, 0);
+}
+
+main a::after:not(img) {
+    content: " ↗";
+    color: rgba(0, 0, 0, 0.5);
+    font-size: 0.75em;
+    font-family: "Reddit Sans", serif;
+}
+  
+
+h2 {
+    font-weight: 100;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    font-size: 1em;
+    margin: 0;
+}
+
+h3 {
+    margin: 0;
+    font-size: 1em;
+}
+
+h3>em {
+    font-weight: 100;
+    font-style: normal;
+}
+
+h4 {
+    font-size: 1em;
+    font-weight: 100;
+    margin: 0;
+}
+
+summary {
+    cursor: pointer;
+    user-select: none;
+}
+
+details {
+    margin-left: 1.15em;
+}
+
+hr {
+    border: 0.5px solid rgba(0, 0, 0, 0.5);
+    margin: 0.5em 0;
+}
+
+blockquote,
+blockquote p {
+    margin: 0;
+    color: rgb(0, 0, 0);
+    font-size: 1em;
+    float: right;
+}
+
+ul {
+    padding: 0 0 0 2em;
+    margin: 0;
+}
+
+p {
+    margin: 0;
+}
+
+.print {
+    display: none;
+}
+
+.not-print {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.not-print a {
+    display: flex;
+}
+
+.not-print img {
+    height: 1em;
+}

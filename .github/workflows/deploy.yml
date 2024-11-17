@@ -30,12 +30,27 @@ jobs:
         with:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
+
       - name: Install, build, and upload your site
         uses: withastro/action@v2
         with:
           path: .
           node-version: 18.14.1
           package-manager: bun@1.1.10
+
+      - name: Generate PDF with Puppeteer
+        run: |
+          bun add puppeteer
+          bun run generate-cv.js
+
+      - name: Upload PDF artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: cv-pdf
+          path: cv.pdf
+      
+      - name: Move PDF to Dist
+        run: mv cv.pdf dist/
 
   deploy:
     needs: build
