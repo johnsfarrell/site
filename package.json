@@ -5,7 +5,7 @@
   "homepage": "https://johnfarrell.io",
   "scripts": {
     "dev": "astro dev",
-    "build": "astro check && astro build && bun run src/scripts/generate-cv.js",
+    "build": "astro check && astro build && bun run src/scripts/export-cv.ts",
     "preview": "astro preview",
     "astro": "astro"
   },
