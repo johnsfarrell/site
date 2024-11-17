@@ -7,7 +7,7 @@ main a {
     color: rgb(0, 0, 0);
 }
 
-main a::after:not(img) {
+main a::after {
     content: " ↗";
     color: rgba(0, 0, 0, 0.5);
     font-size: 0.75em;
