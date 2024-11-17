@@ -48,9 +48,15 @@ jobs:
         with:
           name: cv-pdf
           path: cv.pdf
-      
-      - name: Move PDF to Dist
+          
+      - name: Debug PDF location
+        run: ls -R
+
+      - name: Move PDF to dist
         run: mv cv.pdf dist/
+
+      - name: List files in dist
+        run: ls -R dist
 
   deploy:
     needs: build
