@@ -87,11 +87,15 @@ p {
     justify-content: end;
 }
 
-.not-print a {
-    display: flex;
+.not-print a:hover {
+    text-decoration: none;
 }
 
 .not-print img {
     height: 1em;
     width: 1em;
+}
+
+.not-print p {
+    display: flex;
 }
