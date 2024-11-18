@@ -46,6 +46,9 @@ const pdfStyle = `
   .print {
     display: block !important;
   }
+  .print a {
+    font-weight: normal !important;
+  }
   .not-print {
     display: none;
   }
