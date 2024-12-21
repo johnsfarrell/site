@@ -1,25 +1,27 @@
 ---
-import HeaderLink from './HeaderLink.astro';
-import { SITE_TITLE } from '../consts';
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "../consts";
+import { HEADER_LINKS } from "../consts";
 ---
 
 <header>
-	<nav>
-		<h1>{SITE_TITLE}</h1>
-		<div class="internal-links">
-			<HeaderLink href="/">Home</HeaderLink>
-			<HeaderLink href="/writing">Writing</HeaderLink>
-			<HeaderLink href="/cv">CV</HeaderLink>
-			<HeaderLink href="/contact">Contact</HeaderLink>
-			<HeaderLink href="https://rgbit.io">rgbit &#8599;&#xFE0E;</HeaderLink>
-		</div>
-	</nav>
+  <nav>
+    <h1>{SITE_TITLE}</h1>
+    <div class="internal-links">
+      {
+        HEADER_LINKS.map(({ href, label }) => (
+          <HeaderLink {href}>{label}</HeaderLink>
+        ))
+      }
+    </div>
+  </nav>
 </header>
+
 <style>
-	.internal-links {
-		text-transform: lowercase;
-	}
-	.internal-links > * {
-		margin-right: 0.5rem;
-	}
+  .internal-links {
+    text-transform: lowercase;
+  }
+  .internal-links > * {
+    margin-right: 0.5rem;
+  }
 </style>

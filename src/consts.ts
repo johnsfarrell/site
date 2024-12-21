@@ -24,3 +24,11 @@ export const IMAGES = [
   { src: "/images/san_francisco.jpg", label: "san francisco, ca" },
   { src: "/images/providence_3.jpg", label: "providence, ri" },
 ];
+
+export const HEADER_LINKS = [
+  { href: "/", label: "home" },
+  { href: "/writing", label: "writing" },
+  { href: "/cv", label: "cv" },
+  { href: "/contact", label: "contact" },
+  { href: "https://rgbit.io", label: "rgbit" },
+];
