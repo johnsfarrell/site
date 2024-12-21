@@ -1,25 +1,24 @@
 ---
-import BaseHead from '../components/BaseHead.astro'
-import Footer from '../components/Footer.astro'
-import Header from '../components/Header.astro'
-import { SITE_DESCRIPTION,SITE_TITLE } from '../consts'
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
 ---
 
-
 <html>
-    <head>
-        <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
-    </head>
-    
-    <body class="preload">
-        <div class="banner" />
-        <div class="content-wrap">
-            <Header />
-            <main>
-                <slot />
-            </main>
-            <div class="grow"></div>
-        </div>
-        <Footer filepath={Astro.props.filepath ?? Astro.props.file } />
-    </body>
+  <head>
+    <BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+  </head>
+
+  <body class="preload">
+    <div class="banner"></div>
+    <div class="content-wrap">
+      <Header />
+      <main>
+        <slot />
+      </main>
+      <div class="grow"></div>
+    </div>
+    <Footer filepath={Astro.props.filepath ?? Astro.props.file} />
+  </body>
 </html>

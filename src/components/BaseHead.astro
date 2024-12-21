@@ -1,153 +1,255 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
 
 interface Props {
-	title: string;
-	description: string;
-	image?: string;
+  title: string;
+  description: string;
+  image?: string;
 }
 
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 
-const { title, description, image = '/images/me.jpg' } = Astro.props;
+const { title, description, image = "/images/me.jpg" } = Astro.props;
 ---
 
 <!-- Fonts -->
-<link rel="preload" href="/fonts/DeliciousHandrawn-Regular.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-Black.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-BlackItalic.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-Bold.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-BoldItalic.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-ExtraBold.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-ExtraBoldItalic.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-ExtraLight.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-ExtraLightItalic.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-Italic.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-Light.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-LightItalic.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-Medium.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-MediumItalic.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-Regular.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-SemiBold.ttf" as="font" type="font/ttf" crossorigin />
-<link rel="preload" href="/fonts/RedditSans-SemiBoldItalic.ttf" as="font" type="font/ttf" crossorigin />
-	
+<link
+  rel="preload"
+  href="/fonts/DeliciousHandrawn-Regular.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/RedditSans-Black.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/RedditSans-BlackItalic.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/RedditSans-Bold.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/RedditSans-BoldItalic.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/RedditSans-ExtraBold.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/RedditSans-ExtraBoldItalic.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/RedditSans-ExtraLight.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/RedditSans-ExtraLightItalic.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/RedditSans-Italic.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/RedditSans-Light.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/RedditSans-LightItalic.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/RedditSans-Medium.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/RedditSans-MediumItalic.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/RedditSans-Regular.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/RedditSans-SemiBold.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+<link
+  rel="preload"
+  href="/fonts/RedditSans-SemiBoldItalic.ttf"
+  as="font"
+  type="font/ttf"
+  crossorigin
+/>
+
 <style>
-	@font-face {
-		font-family: "Delicious Handrawn";
-		src: url(/fonts/DeliciousHandrawn-Regular.ttf) format("truetype");
-	}
+  @font-face {
+    font-family: "Delicious Handrawn";
+    src: url(/fonts/DeliciousHandrawn-Regular.ttf) format("truetype");
+  }
 
-	@font-face {
-		font-family: "Reddit Sans";
-		src: url(/fonts/RedditSans-SemiBoldItalic.ttf) format('truetype');
-		font-weight: 600;
-		font-style: italic;
-	}
+  @font-face {
+    font-family: "Reddit Sans";
+    src: url(/fonts/RedditSans-SemiBoldItalic.ttf) format("truetype");
+    font-weight: 600;
+    font-style: italic;
+  }
 
-	@font-face {
-		font-family: "Reddit Sans";
-		src: url(/fonts/RedditSans-Black.ttf) format('truetype');
-		font-weight: 900;
-		font-style: normal;
-	}
+  @font-face {
+    font-family: "Reddit Sans";
+    src: url(/fonts/RedditSans-Black.ttf) format("truetype");
+    font-weight: 900;
+    font-style: normal;
+  }
 
-	@font-face {
-		font-family: "Reddit Sans";
-		src: url(/fonts/RedditSans-BlackItalic.ttf) format('truetype');
-		font-weight: 900;
-		font-style: italic;
-	}
+  @font-face {
+    font-family: "Reddit Sans";
+    src: url(/fonts/RedditSans-BlackItalic.ttf) format("truetype");
+    font-weight: 900;
+    font-style: italic;
+  }
 
-	@font-face {
-		font-family: "Reddit Sans";
-		src: url(/fonts/RedditSans-Bold.ttf) format('truetype');
-		font-weight: 700;
-		font-style: normal;
-	}
+  @font-face {
+    font-family: "Reddit Sans";
+    src: url(/fonts/RedditSans-Bold.ttf) format("truetype");
+    font-weight: 700;
+    font-style: normal;
+  }
 
-	@font-face {
-		font-family: "Reddit Sans";
-		src: url(/fonts/RedditSans-BoldItalic.ttf) format('truetype');
-		font-weight: 700;
-		font-style: italic;
-	}
+  @font-face {
+    font-family: "Reddit Sans";
+    src: url(/fonts/RedditSans-BoldItalic.ttf) format("truetype");
+    font-weight: 700;
+    font-style: italic;
+  }
 
-	@font-face {
-		font-family: "Reddit Sans";
-		src: url(/fonts/RedditSans-ExtraBold.ttf) format('truetype');
-		font-weight: 800;
-		font-style: normal;
-	}
+  @font-face {
+    font-family: "Reddit Sans";
+    src: url(/fonts/RedditSans-ExtraBold.ttf) format("truetype");
+    font-weight: 800;
+    font-style: normal;
+  }
 
-	@font-face {
-		font-family: "Reddit Sans";
-		src: url(/fonts/RedditSans-ExtraBoldItalic.ttf) format('truetype');
-		font-weight: 800;
-		font-style: italic;
-	}
+  @font-face {
+    font-family: "Reddit Sans";
+    src: url(/fonts/RedditSans-ExtraBoldItalic.ttf) format("truetype");
+    font-weight: 800;
+    font-style: italic;
+  }
 
-	@font-face {
-		font-family: "Reddit Sans";
-		src: url(/fonts/RedditSans-ExtraLight.ttf) format('truetype');
-		font-weight: 200;
-		font-style: normal;
-	}
+  @font-face {
+    font-family: "Reddit Sans";
+    src: url(/fonts/RedditSans-ExtraLight.ttf) format("truetype");
+    font-weight: 200;
+    font-style: normal;
+  }
 
-	@font-face {
-		font-family: "Reddit Sans";
-		src: url(/fonts/RedditSans-ExtraLightItalic.ttf) format('truetype');
-		font-weight: 200;
-		font-style: italic;
-	}
+  @font-face {
+    font-family: "Reddit Sans";
+    src: url(/fonts/RedditSans-ExtraLightItalic.ttf) format("truetype");
+    font-weight: 200;
+    font-style: italic;
+  }
 
-	@font-face {
-		font-family: "Reddit Sans";
-		src: url(/fonts/RedditSans-Italic.ttf) format('truetype');
-		font-weight: 400;
-		font-style: italic;
-	}
+  @font-face {
+    font-family: "Reddit Sans";
+    src: url(/fonts/RedditSans-Italic.ttf) format("truetype");
+    font-weight: 400;
+    font-style: italic;
+  }
 
-	@font-face {
-		font-family: "Reddit Sans";
-		src: url(/fonts/RedditSans-Light.ttf) format('truetype');
-		font-weight: 300;
-		font-style: normal;
-	}
+  @font-face {
+    font-family: "Reddit Sans";
+    src: url(/fonts/RedditSans-Light.ttf) format("truetype");
+    font-weight: 300;
+    font-style: normal;
+  }
 
-	@font-face {
-		font-family: "Reddit Sans";
-		src: url(/fonts/RedditSans-LightItalic.ttf) format('truetype');
-		font-weight: 300;
-		font-style: italic;
-	}
+  @font-face {
+    font-family: "Reddit Sans";
+    src: url(/fonts/RedditSans-LightItalic.ttf) format("truetype");
+    font-weight: 300;
+    font-style: italic;
+  }
 
-	@font-face {
-		font-family: "Reddit Sans";
-		src: url(/fonts/RedditSans-Medium.ttf) format('truetype');
-		font-weight: 500;
-		font-style: normal;
-	}
+  @font-face {
+    font-family: "Reddit Sans";
+    src: url(/fonts/RedditSans-Medium.ttf) format("truetype");
+    font-weight: 500;
+    font-style: normal;
+  }
 
-	@font-face {
-		font-family: "Reddit Sans";
-		src: url(/fonts/RedditSans-MediumItalic.ttf) format('truetype');
-		font-weight: 500;
-		font-style: italic;
-	}
+  @font-face {
+    font-family: "Reddit Sans";
+    src: url(/fonts/RedditSans-MediumItalic.ttf) format("truetype");
+    font-weight: 500;
+    font-style: italic;
+  }
 
-	@font-face {
-		font-family: "Reddit Sans";
-		src: url(/fonts/RedditSans-Regular.ttf) format('truetype');
-		font-weight: 400;
-		font-style: normal;
-	}
+  @font-face {
+    font-family: "Reddit Sans";
+    src: url(/fonts/RedditSans-Regular.ttf) format("truetype");
+    font-weight: 400;
+    font-style: normal;
+  }
 
-	@font-face {
-		font-family: "Reddit Sans";
-		src: url(/fonts/RedditSans-SemiBold.ttf) format('truetype');
-		font-weight: 600;
-		font-style: normal;
-	}
+  @font-face {
+    font-family: "Reddit Sans";
+    src: url(/fonts/RedditSans-SemiBold.ttf) format("truetype");
+    font-weight: 600;
+    font-style: normal;
+  }
 </style>
 
 <!-- Global Metadata -->
@@ -172,4 +274,9 @@ const { title, description, image = '/images/me.jpg' } = Astro.props;
 <meta property="og:image" content={new URL(image, Astro.url)} />
 
 <!-- K(L)atex -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css" integrity="sha384-WsHMgfkABRyG494OmuiNmkAOk8nhO1qE+Y6wns6v+EoNoTNxrWxYpl5ZYWFOLPCM" crossorigin="anonymous">
+<link
+  rel="stylesheet"
+  href="https://cdn.jsdelivr.net/npm/katex@0.15.1/dist/katex.css"
+  integrity="sha384-WsHMgfkABRyG494OmuiNmkAOk8nhO1qE+Y6wns6v+EoNoTNxrWxYpl5ZYWFOLPCM"
+  crossorigin="anonymous"
+/>

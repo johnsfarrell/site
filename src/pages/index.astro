@@ -1,61 +1,82 @@
 ---
-import Base from '../layouts/Base.astro';
+import Base from "../layouts/Base.astro";
 import { SITE_EMAIL, SOCIAL_MEDIA } from "../consts";
-import Mileage from '../components/Mileage.astro';
-import Polaroid from '../components/Polaroid.astro';
+import Mileage from "../components/Mileage.astro";
+import Polaroid from "../components/Polaroid.astro";
 
 const filepath = "./src/pages/index.astro";
 ---
 
 <Base filepath={filepath}>
-	<div class="container">
-		<Polaroid />
-		<div class="description">
-			<br />
-			Hey! I'm a student at Brown studying Computer Science and Mathematics. 
-			I am particularly interested in software design and machine learning,
-			and the challenges faced at the intersection of the two.
-			<br /><br />
-			I've been a TA for both undergraduate and graduate computer science courses at Brown, 
-			covering material ranging from introductory programming to <a href="https://cs.brown.edu/degrees/cybersecurity/">advanced cybersecurity</a>.
-			In the fall, I work as a <a href="https://cs.brown.edu/degrees/undergrad/jobs/hta/">Head TA</a> coordinating a staff of UTAs and a class of ~200 students. I am passionate about the importance of peer education and the role TAs can play
-			in fostering an inclusive learning environment. 
-			<br /><br />
-			I have some previous industry experience as a software engineer intern at 
-			<a href="https://sharpnotions.com/">Sharp Notions</a> and <a href="https://meetpaidly.com/">Paidly</a>. 
-			The small team sizes and fast-paced environments at these companies gave me the opportunity and resources to work on a <a href="/cv#experience">variety of projects</a>. This summer I am working as a mobile development intern at <a href="https://billmax.com/">BillMax</a> and a research assistant for Brown Unveristy Professor and New York Time's Best Seller <a href="https://www.brown.edu/academics/population-studies/people/person/emily-oster">Emily Oster</a>, developing <a href="https://zelma.ai">Zelma AI</a>!
-		</div>
-	</div>
-	<hr>
-	<Mileage />
-	<div class="contact">
-		<span>
-			Please feel free to reach me at <a href={"mailto:" + SITE_EMAIL}>{SITE_EMAIL}</a>. 
-		</span>
-		<span>
-			Here are my <a href={"mailto:" + SITE_EMAIL}>email</a>, <a href={SOCIAL_MEDIA.github}>github</a>, <a href={SOCIAL_MEDIA.linkedin}>linkedin</a>, and <a href={SOCIAL_MEDIA.instagram}>instagram</a>.
-		</span>
-	</div>
+  <div class="container">
+    <Polaroid />
+    <div class="description">
+      <br />
+      Hey! I'm a student at Brown studying Computer Science and Mathematics. I am
+      particularly interested in software design and machine learning, and the challenges
+      faced at the intersection of the two.
+      <br /><br />
+      I've been a TA for both undergraduate and graduate computer science courses
+      at Brown, covering material ranging from introductory programming to <a
+        href="https://cs.brown.edu/degrees/cybersecurity/"
+        >advanced cybersecurity</a
+      >. In the fall, I work as a <a
+        href="https://cs.brown.edu/degrees/undergrad/jobs/hta/">Head TA</a
+      > coordinating a staff of UTAs and a class of ~200 students. I am passionate
+      about the importance of peer education and the role TAs can play in fostering
+      an inclusive learning environment.
+      <br /><br />
+      I have some previous industry experience as a software engineer intern at
+      <a href="https://sharpnotions.com/">Sharp Notions</a> and <a
+        href="https://meetpaidly.com/">Paidly</a
+      >. The small team sizes and fast-paced environments at these companies
+      gave me the opportunity and resources to work on a <a
+        href="/cv#experience">variety of projects</a
+      >. This summer I am working as a mobile development intern at <a
+        href="https://billmax.com/">BillMax</a
+      > and a research assistant for Brown Unveristy Professor and New York Time's
+      Best Seller <a
+        href="https://www.brown.edu/academics/population-studies/people/person/emily-oster"
+        >Emily Oster</a
+      >, developing <a href="https://zelma.ai">Zelma AI</a>!
+    </div>
+  </div>
+  <hr />
+  <Mileage />
+  <div class="contact">
+    <span>
+      Please feel free to reach me at <a href={"mailto:" + SITE_EMAIL}
+        >{SITE_EMAIL}</a
+      >.
+    </span>
+    <span>
+      Here are my <a href={"mailto:" + SITE_EMAIL}>email</a>, <a
+        href={SOCIAL_MEDIA.github}>github</a
+      >, <a href={SOCIAL_MEDIA.linkedin}>linkedin</a>, and <a
+        href={SOCIAL_MEDIA.instagram}>instagram</a
+      >.
+    </span>
+  </div>
 </Base>
 
 <style>
-	.contact {
-		font-size: smaller;
-		text-align: center;
-	}
+  .contact {
+    font-size: smaller;
+    text-align: center;
+  }
 
-	.description {
-		text-wrap: wrap;
-		text-align: justify;
-	}
+  .description {
+    text-wrap: wrap;
+    text-align: justify;
+  }
 
-	hr {
-		margin: 1em;
-	}
+  hr {
+    margin: 1em;
+  }
 
-	@media (max-width: 725px) {
-		.contact span {
-			display: block;
-		}
-	}
+  @media (max-width: 725px) {
+    .contact span {
+      display: block;
+    }
+  }
 </style>

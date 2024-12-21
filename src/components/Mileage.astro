@@ -1,73 +1,79 @@
 ---
-
 function formatMileage(meters: number) {
-    return Math.round((meters * 0.621371 / 1000) * 100) / 100;
+  return Math.round(((meters * 0.621371) / 1000) * 100) / 100;
 }
 
 function getYearOldEpoch() {
-    const now = new Date();
-    const yearAgo = new Date(now.getFullYear() - 1, now.getMonth(), now.getDate());
-    return yearAgo.getTime() / 1000;
+  const now = new Date();
+  const yearAgo = new Date(
+    now.getFullYear() - 1,
+    now.getMonth(),
+    now.getDate()
+  );
+  return yearAgo.getTime() / 1000;
 }
 
 async function getBearerToken() {
-    const clientID = import.meta.env.STRAVA_CLIENT_ID;
-    const clientSecret = import.meta.env.STRAVA_CLIENT_SECRET;
-    const refreshToken = import.meta.env.STRAVA_REFRESH_TOKEN;
-    const url = `https://www.strava.com/oauth/token?client_id=${clientID}&client_secret=${clientSecret}&refresh_token=${refreshToken}&grant_type=refresh_token`;
-    const response = await fetch(url, { method: 'POST' });
-    const data = await response.json();
-    return `Bearer ${data.access_token}`;
+  const clientID = import.meta.env.STRAVA_CLIENT_ID;
+  const clientSecret = import.meta.env.STRAVA_CLIENT_SECRET;
+  const refreshToken = import.meta.env.STRAVA_REFRESH_TOKEN;
+  const url = `https://www.strava.com/oauth/token?client_id=${clientID}&client_secret=${clientSecret}&refresh_token=${refreshToken}&grant_type=refresh_token`;
+  const response = await fetch(url, { method: "POST" });
+  const data = await response.json();
+  return `Bearer ${data.access_token}`;
 }
 
 async function getPage(page: number, bearer: string) {
-    const epoch = getYearOldEpoch();
-    const url = `https://www.strava.com/api/v3/athlete/activities?after=${epoch}&per_page=200&page=${page}`;
-    const headers = { "Authorization": bearer };
-    const response = await fetch(url, { method: 'GET', headers: headers });
-    return await response.json();
+  const epoch = getYearOldEpoch();
+  const url = `https://www.strava.com/api/v3/athlete/activities?after=${epoch}&per_page=200&page=${page}`;
+  const headers = { Authorization: bearer };
+  const response = await fetch(url, { method: "GET", headers: headers });
+  return await response.json();
 }
 
 async function fetchMileage() {
-    let mileage: { [key: string]: number } = {};
-    for (let i = 0; i < 365; i++) {
-        const date = new Date(Date.now() - i * 24 * 60 * 60 * 1000);
-        const key = `${date.getFullYear()}-${date.getMonth()+1}-${date.getDate()}`;
-        mileage[key] = 0;
+  let mileage: { [key: string]: number } = {};
+  for (let i = 0; i < 365; i++) {
+    const date = new Date(Date.now() - i * 24 * 60 * 60 * 1000);
+    const key = `${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}`;
+    mileage[key] = 0;
+  }
+  if (import.meta.env.MODE !== "production") return mileage;
+  const bearer = await getBearerToken();
+  let i = 1;
+  let pagedMileage = await getPage(i, bearer);
+  while (pagedMileage.length > 0) {
+    for (let data of pagedMileage) {
+      const utcDate = new Date(Date.parse(data.start_date));
+      const estDate = new Date(utcDate.getTime() - 5 * 60 * 60 * 1000); // EST (UTC - 5 hours)
+      const key = `${estDate.getFullYear()}-${estDate.getMonth() + 1}-${estDate.getDate()}`;
+      if (key in mileage) mileage[key] += data.distance;
     }
-    if (import.meta.env.MODE !== 'production') return mileage;
-    const bearer = await getBearerToken();
-    let i = 1;
-    let pagedMileage = await getPage(i, bearer);
-    while (pagedMileage.length > 0) {
-        for (let data of pagedMileage) {
-            const utcDate = new Date(Date.parse(data.start_date));
-            const estDate = new Date(utcDate.getTime() - 5 * 60 * 60 * 1000); // EST (UTC - 5 hours)
-            const key = `${estDate.getFullYear()}-${estDate.getMonth()+1}-${estDate.getDate()}`;
-            if (key in mileage) mileage[key] += data.distance;
-        }
-        pagedMileage = await getPage(++i, bearer);
-    }
-    return mileage;
+    pagedMileage = await getPage(++i, bearer);
+  }
+  return mileage;
 }
 
 let mileageMap = await fetchMileage();
-let mileage = Object.entries(mileageMap).map(([key, value]) => [new Date(key).getTime(), value]);
+let mileage = Object.entries(mileageMap).map(([key, value]) => [
+  new Date(key).getTime(),
+  value,
+]);
 mileage.sort((a, b) => a[0] - b[0]); // sort mileage by date
 
 // prepend days to mileage until first day is Sunday
 while (new Date(mileage[0][0]).getDay() !== 0) {
-    const previousDate: Date = new Date(mileage[0][0]);
-    previousDate.setDate(previousDate.getDate() - 1);
-    mileage.unshift([previousDate.getTime(), -1]);
+  const previousDate: Date = new Date(mileage[0][0]);
+  previousDate.setDate(previousDate.getDate() - 1);
+  mileage.unshift([previousDate.getTime(), -1]);
 }
 
 const min_miles = Math.min(...mileage.map((data: any) => data[1]));
 const max_miles = Math.max(...mileage.map((data: any) => data[1]));
 
 function getColor(n: number, min: number, max: number) {
-  if (n === -1) return '#00000000';
-  if (n === 0) return 'rgb(0,0,0,0.1)';
+  if (n === -1) return "#00000000";
+  if (n === 0) return "rgb(0,0,0,0.1)";
 
   const startColor = [142, 210, 250];
   const endColor = [9, 126, 195];
@@ -84,41 +90,47 @@ function getColor(n: number, min: number, max: number) {
 
 function formatTimestamp(timestamp: number) {
   const date = new Date(timestamp);
-  return date.toLocaleDateString('en-US', { year: 'numeric', month: 'short', day: 'numeric' });
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "short",
+    day: "numeric",
+  });
 }
 
 function tooltipContent(data: number[]) {
-    return data[1] === -1 ? 'none' : `'${formatMileage(data[1])} miles ran on ${formatTimestamp(data[0])}'`
+  return data[1] === -1
+    ? "none"
+    : `'${formatMileage(data[1])} miles ran on ${formatTimestamp(data[0])}'`;
 }
 
 function getRandom() {
-    return (Math.random() - 0.5) * 2;
+  return (Math.random() - 0.5) * 2;
 }
 
 const animationStyles = [
-    (index: number) => ({
-        animation: 'basicScale 0.4s forwards',
-        animationDelay: `${index % 31 * 0.03667}s`,
-        translate: `${getRandom() * 20}px ${getRandom() * 20}px`,
-    }),
-    (_: number) => ({
-        animation: 'basicScale 0.4s forwards',
-        animationDelay: `${Math.abs(getRandom()) * 1.103}s`,
-        translate: `${getRandom() * 10}px ${getRandom() * 10}px`,
-    }),
-    (_: number) => ({
-        animation: 'pulseScale 0.4s forwards',
-        animationDelay: `${Math.abs(getRandom()) * 1.103}s`,
-    }),
-    (index: number) => ({
-        animation: 'pulseScale 0.4s forwards',
-        animationDelay: `${(Math.abs(index % 7 - 3) + Math.abs(Math.floor(index / 7) - 26)) * 0.03794}s`,
-    }),
-    (index: number) => ({
-        animation: 'pulseScale 0.4s forwards',
-        animationDelay: `${(index / 10 + index % 7) * 0.025582}s`,
-    }),
-]
+  (index: number) => ({
+    animation: "basicScale 0.4s forwards",
+    animationDelay: `${(index % 31) * 0.03667}s`,
+    translate: `${getRandom() * 20}px ${getRandom() * 20}px`,
+  }),
+  (_: number) => ({
+    animation: "basicScale 0.4s forwards",
+    animationDelay: `${Math.abs(getRandom()) * 1.103}s`,
+    translate: `${getRandom() * 10}px ${getRandom() * 10}px`,
+  }),
+  (_: number) => ({
+    animation: "pulseScale 0.4s forwards",
+    animationDelay: `${Math.abs(getRandom()) * 1.103}s`,
+  }),
+  (index: number) => ({
+    animation: "pulseScale 0.4s forwards",
+    animationDelay: `${(Math.abs((index % 7) - 3) + Math.abs(Math.floor(index / 7) - 26)) * 0.03794}s`,
+  }),
+  (index: number) => ({
+    animation: "pulseScale 0.4s forwards",
+    animationDelay: `${(index / 10 + (index % 7)) * 0.025582}s`,
+  }),
+];
 
 const styleIndex = Math.floor(Math.random() * animationStyles.length);
 const animationStyle = animationStyles[styleIndex];
@@ -131,95 +143,104 @@ const animationStyle = animationStyles[styleIndex];
 //     }
 //     console.log(`Style ${styleIndex} has a max delay of ${max_delay}ms`);
 // }
-
 ---
 
 <div class="grid-container">
-  {mileage.map((data: any, index: any) => (
-    <div 
-      class="grid-item" 
-      style={{ 
-        backgroundColor: getColor(data[1], min_miles, max_miles), 
-        ...animationStyle(index),
-        '--tooltip-content': tooltipContent(data)
-      }}
-    ></div>
-  ))}
+  {
+    mileage.map((data: any, index: any) => (
+      <div
+        class="grid-item"
+        style={{
+          backgroundColor: getColor(data[1], min_miles, max_miles),
+          ...animationStyle(index),
+          "--tooltip-content": tooltipContent(data),
+        }}
+      />
+    ))
+  }
 </div>
 
 <hr />
 
 <style>
+  .grid-container {
+    padding: 0 2em;
+    display: grid;
+    grid-template-rows: repeat(7, calc(1em - 2px));
+    grid-template-columns: repeat(auto-fill, minmax(calc(100% / 53), 1fr));
+    grid-auto-flow: column;
+    justify-content: center;
+  }
+
+  .grid-item {
+    width: calc(100% - 3px);
+    border-radius: 3px;
+    border: 1.5px solid rgb(245, 245, 245);
+    aspect-ratio: 1;
+    transition: scale 0.2s;
+    transform: scale(0);
+    text-wrap: nowrap;
+    position: relative;
+  }
+
+  .grid-item:hover {
+    scale: 1.2;
+    z-index: 1;
+  }
+
+  .grid-item:active {
+    scale: 1;
+  }
+
+  hr {
+    margin: 1em;
+  }
+
+  /* hover tooltip for medium+ screens */
+  @media (min-width: 600px) {
     .grid-container {
-        padding: 0 2em;
-        display: grid;
-        grid-template-rows: repeat(7, calc(1em - 2px));
-        grid-template-columns: repeat(auto-fill, minmax(calc(100% / 53), 1fr));
-        grid-auto-flow: column;
-        justify-content: center;
+      cursor: pointer;
     }
 
-    .grid-item {
-        width: calc(100% - 3px);
-        border-radius: 3px;
-        border: 1.5px solid rgb(245, 245, 245);
-        aspect-ratio: 1;
-        transition: scale 0.2s;
-        transform: scale(0);
-        text-wrap: nowrap;
-        position: relative;
+    .grid-item:hover::after {
+      content: var(--tooltip-content);
+      position: absolute;
+      bottom: calc(100% + 3px);
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: rgb(255, 255, 255);
+      border-radius: 2px;
+      border: 2px solid rgba(0, 0, 0, 0.1);
+      color: rgba(0, 0, 0, 0.5);
+      font-size: 0.8em;
+      padding: 5px 10px;
+      pointer-events: none;
+      opacity: 1;
     }
+  }
 
-    .grid-item:hover {
-        scale: 1.2;
-        z-index: 1;
+  @media (max-width: 830px) {
+    .grid-container {
+      grid-template-rows: repeat(7, 1fr);
+      padding: 0 1em;
     }
+  }
 
-    .grid-item:active {
-        scale: 1;
+  /* animations */
+  @keyframes pulseScale {
+    50% {
+      transform: scale(1.5);
     }
-
-    hr {
-        margin: 1em;
+    100% {
+      transform: scale(1);
+      translate: 0px;
     }
+  }
 
-    /* hover tooltip for medium+ screens */
-    @media (min-width: 600px) {
-        .grid-container {
-            cursor: pointer;
-        }
-
-        .grid-item:hover::after {
-            content: var(--tooltip-content);
-            position: absolute;
-            bottom: calc(100% + 3px);
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: rgb(255, 255, 255);
-            border-radius: 2px;
-            border: 2px solid rgba(0, 0, 0, 0.1);
-            color: rgba(0,0,0,0.5);
-            font-size: 0.8em;
-            padding: 5px 10px;
-            pointer-events: none;
-            opacity: 1;
-        }
+  @keyframes basicScale {
+    100% {
+      transform: scale(1);
+      translate: 0px;
     }
-
-    @media (max-width: 830px) {
-        .grid-container {
-            grid-template-rows: repeat(7, 1fr);
-            padding: 0 1em;
-        }
-    }
-
-    /* animations */
-    @keyframes pulseScale { 
-        50% { transform: scale(1.5); }
-        100% { transform: scale(1); translate: 0px; }
-    }
-
-    @keyframes basicScale { 
-        100% { transform: scale(1); translate: 0px; }
-    }
+  }
 </style>
