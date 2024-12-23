@@ -1,0 +1,40 @@
+<input type="checkbox" id="contactCheckbox" />
+<label for="contactCheckbox"><a>Contact</a></label>
+<div id="contactDetails">
+  <a href="mailto:john_farrell@brown.edu">john_farrell@brown.edu</a>,
+  <a href="https://linkedin.com/in/johnsfarrell">linkedin/in/johnsfarrell</a>,
+  <a href="https://github.com/johnsfarrell">github/johnsfarrell</a>
+</div>
+
+<style>
+  #contactCheckbox {
+    display: none;
+  }
+
+  #contactCheckbox ~ label::after {
+    content: " ⌃ ";
+    color: rgb(60, 60, 120);
+    margin: 0 0.25em;
+    position: relative;
+    top: -0.1em;
+    display: inline-block;
+    transform: rotate(180deg);
+  }
+
+  #contactCheckbox:checked ~ label::after {
+    transform: rotate(0deg);
+    top: 0.225em;
+  }
+
+  #contactDetails {
+    opacity: 0;
+    height: 0;
+    transition: all 0.25s;
+  }
+
+  #contactCheckbox:checked ~ #contactDetails {
+    opacity: 1;
+    padding-top: 1em;
+    height: 1em;
+  }
+</style>

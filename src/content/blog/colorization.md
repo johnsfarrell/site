@@ -6,9 +6,9 @@ pubDate: "May 15, 2024"
 
 ![Colorize Banner](../img/colorization/banner.jpeg)
 
-This is a review of my [computer vision](https://browncsci1430.github.io/) final project, to restore color to legacy black and white photography. We trained a convolutional neural network (CNN) to colorize grayscale images using a VGG19 U-Net architecture with TensorFlow. The project was called RGBIT and was maintained as a 100% free and open-source application and API to restore color to legacy grayscale photography. A live version of the project can be found [here](https://rgbit.io). Contributors to this project include: Tyler Gurth, John Farrell, Hunter Adrian, and Jania Vandevoorde.
+This is a review of my [computer vision](https://browncsci1430.github.io/) final project, to restore color to legacy black and white photography. We trained a convolutional neural network (CNN) to colorize grayscale images using a VGG19 U-Net architecture with TensorFlow. The project was called RGBIT and was maintained as a 100% free and open-source application and API to restore color to legacy grayscale photography. A live version of the project can be found [here](https://rgbit.johnfarrell.io). Contributors to this project include: Tyler Gurth, John Farrell, Hunter Adrian, and Jania Vandevoorde.
 
-[GitHub Repository](https://johnsfarrell.github.io/rgbit), [Live Demo](https://rgbit.io), [Research Report](https://rgbit.io/research/report.pdf)
+[GitHub Repository](https://johnsfarrell.github.io/rgbit), [Live Demo](https://rgbit.johnfarrell.io), [Research Report](https://rgbit.johnfarrell.io/research/report.pdf)
 
 <hr>
 
@@ -34,7 +34,7 @@ $$
 loss(\mathbb{R}^{2 \times l \times w}, \mathbb{R}^{2 \times l \times w}) \Rightarrow \mathbb{R}
 $$
 
-Using the LAB colorspace allows us to input an image of any size, downscale it to $224 \times 224$, then upscale to original image quality, as we preserve the light intensity channel. This is a more robust approach than using the RGB colorspace. You can see this in live action on our [demo](https://rgbit.io).
+Using the LAB colorspace allows us to input an image of any size, downscale it to $224 \times 224$, then upscale to original image quality, as we preserve the light intensity channel. This is a more robust approach than using the RGB colorspace. You can see this in live action on our [demo](https://rgbit.johnfarrell.io).
 
 ## Loss Function
 

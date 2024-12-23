@@ -1,5 +1,6 @@
 ---
 import HeaderLink from "./HeaderLink.astro";
+import Contact from "./Contact.astro";
 import { SITE_TITLE } from "../consts";
 import { HEADER_LINKS } from "../consts";
 ---
@@ -13,6 +14,7 @@ import { HEADER_LINKS } from "../consts";
           <HeaderLink {href}>{label}</HeaderLink>
         ))
       }
+      <Contact />
     </div>
   </nav>
 </header>

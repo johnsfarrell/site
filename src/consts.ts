@@ -28,7 +28,6 @@ export const IMAGES = [
 export const HEADER_LINKS = [
   { href: "/", label: "home" },
   { href: "/writing", label: "writing" },
+  { href: "/projects", label: "projects" },
   { href: "/cv", label: "cv" },
-  { href: "/contact", label: "contact" },
-  { href: "https://rgbit.io", label: "rgbit" },
 ];

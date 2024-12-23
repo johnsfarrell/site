@@ -6,7 +6,7 @@ pubDate: "May 15, 2024"
 
 **Deploying a Namecheap domain to GitHub Pages and a subdomain to an EC2 instance using AWS Route 53.**
 
-This is my experience deploying a domain and subdomain on AWS Route 53. Recently, [I was working on a project](https://rgbit.io) that required deploying a website to a domain, and an API to a subdomain. I wanted to use AWS Route 53 to manage the DNS records for the domain and subdomain.
+This is my experience deploying a domain and subdomain on AWS Route 53. Recently, [I was working on a project](https://rgbit.johnfarrell.io) that required deploying a website to a domain, and an API to a subdomain. I wanted to use AWS Route 53 to manage the DNS records for the domain and subdomain.
 
 <hr>
 
