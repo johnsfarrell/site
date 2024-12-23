@@ -2,13 +2,21 @@
 <label for="contactCheckbox"><a>Contact</a></label>
 <div id="contactDetails">
   <a href="mailto:john_farrell@brown.edu">john_farrell@brown.edu</a>,
-  <a href="https://linkedin.com/in/johnsfarrell">linkedin/in/johnsfarrell</a>,
-  <a href="https://github.com/johnsfarrell">github/johnsfarrell</a>
+  <a href="https://linkedin.com/in/johnsfarrell">linkedin</a>,
+  <a href="https://github.com/johnsfarrell">github</a>
 </div>
 
 <style>
   #contactCheckbox {
     display: none;
+  }
+
+  #contactCheckbox ~ #contactDetails a {
+    pointer-events: none;
+  }
+
+  #contactCheckbox:checked ~ #contactDetails a {
+    pointer-events: auto;
   }
 
   #contactCheckbox ~ label::after {
@@ -30,6 +38,7 @@
     opacity: 0;
     height: 0;
     transition: all 0.25s;
+    user-select: auto !important;
   }
 
   #contactCheckbox:checked ~ #contactDetails {
