@@ -8,7 +8,6 @@ export const SITE_URL = "https://johnfarrell.io";
 export const SOCIAL_MEDIA = {
   github: "https://github.com/johnsfarrell/",
   linkedin: "https://www.linkedin.com/in/johnsfarrell/",
-  instagram: "https://www.instagram.com/jahn_farrell/",
 };
 
 export const IMAGES = [
