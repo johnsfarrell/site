@@ -126,9 +126,10 @@ import { Image } from "astro:assets";
 
   // Cycle through images on polaroid
   let img = document.getElementsByTagName("img")[0];
-  let label = document.getElementsByTagName("label")[1];
+  let label = document.getElementsByTagName("label")[2];
   let animation_duration = 500;
   let auto_cycle = true;
+
   function cycle(stop_auto_cycle = false) {
     if (stop_auto_cycle) auto_cycle = false;
     IMAGES.push(IMAGES.shift()!);
@@ -139,10 +140,12 @@ import { Image } from "astro:assets";
     );
     setTimeout(() => {
       img.src = IMAGES[0].src;
-      label.innerHTML = IMAGES[0].label;
+      label.innerText = IMAGES[0].label;
     }, animation_duration / 2);
   }
+
   setInterval(() => auto_cycle && cycle(), 4000);
+
   rotationalContainer.onclick = () => cycle(true);
   document.onkeydown = (e) => e.key === "ArrowRight" && cycle(true);
 
