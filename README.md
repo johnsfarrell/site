@@ -10,7 +10,7 @@
 | `bun dev`       | Starts local dev server at `localhost:4321`                                          |
 | `bun preview`   | Build your production site to `./dist/` and previews build locally, before deploying |
 | `bun astro ...` | Run CLI commands, for help specify `--help`                                          |
-| `nvm use ...`   | Use the correct Node version (`18.14.1`)                                             |
+| `nvm use ...`   | Use the correct Node version (`18.17.1`)                                             |
 
 <hr>
 

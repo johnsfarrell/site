@@ -35,7 +35,7 @@ jobs:
         uses: withastro/action@v2
         with:
           path: .
-          node-version: 18.14.1
+          node-version: 18.17.1
           package-manager: bun@1.1.10
 
   deploy:
