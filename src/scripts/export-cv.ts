@@ -70,6 +70,15 @@ const pdfStyle = `
   blockquote p {
       display: block;
   }
+  input {
+    display: none;
+  }
+  label {
+    display: none;
+  }
+  #contactDetails {
+    display: none;
+  }
 `;
 
 exportCV();

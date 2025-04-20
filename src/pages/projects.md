@@ -1,8 +1,16 @@
 ---
 layout: "../layouts/Base.astro"
 title: Projects
-description: School and passion projects.
+description: School, lab, and passion projects.
 ---
+
+### [Zelma](https://zelma.ai/zelma)
+
+The most comprehensive student test dataset in America. Graph, filter, and explore using plain English.
+
+![Zelma](../content/img/projects/zelma.png)
+
+> _GCP, Kubernetes, FastAPI, PostgreSQL, NextJS_
 
 ### [RGBIT](https://rgbit.johnfarrell.io)
 
@@ -10,7 +18,7 @@ RGBIT is a completely open-source and free platform for restoring color to black
 
 ![RGBIT](../content/img/colorization/banner.jpeg)
 
-> _AWS, Docker, TensorFlow, Flask, ExpressJS, ReactJS_
+> _AWS, Docker, TensorFlow, Flask, ExpressJS, MongoDB, ReactJS_
 
 ### [Calculator](https://calcproject.johnfarrell.io)
 
