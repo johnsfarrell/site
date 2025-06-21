@@ -4,7 +4,7 @@ description: "Using VGG19 U-Net architecture to colorize legacy black and white 
 pubDate: "May 15, 2024"
 ---
 
-![Colorize Banner](../img/colorization/banner.jpeg)
+![Colorize Banner](/images/blog/colorization/banner.jpeg)
 
 This is a review of my [computer vision](https://browncsci1430.github.io/) final project, to restore color to legacy black and white photography. We trained a convolutional neural network (CNN) to colorize grayscale images using a VGG19 U-Net architecture with TensorFlow. The project was called RGBIT and was maintained as a 100% free and open-source application and API to restore color to legacy grayscale photography. A live version of the project can be found [here](https://rgbit.johnfarrell.io). Contributors to this project include: Tyler Gurth, John Farrell, Hunter Adrian, and Jania Vandevoorde.
 
@@ -18,7 +18,7 @@ We sought to create a model architecture and algorithmic process to take graysca
 
 We implemented a convolutional neural network (CNN) to colorize grayscale images using a **U-Net architecture with the VGG-19 model**. U-Net is a popular deep learning architecture known for its effectiveness in image segmentation tasks. VGG-19 is a large model with almost 150 million parameters that is pre-trained. It is traditionally used for feature detection and was adapted for colorizing in our project. Our model is trained using the MIT Places365 dataset, which contains 365,000 images of scenes (which we split into 328,500 train and 36,500 test images, a 90/10 split). Moreover, the model makes use of a custom Perceptual Loss function for a higher level chromatic evaluation of the CNN. Our results show that the model produces vibrant and realistically colored images. This project reinforces the potential of deep learning in creative image processing. Below is our VGG-19 U-Net architecture.
 
-![Architecture](../img/colorization/architecture.png)
+![Architecture](/images/blog/colorization/architecture.png)
 
 ## Methodology
 
@@ -94,7 +94,7 @@ Results against popular legacy black and white photography. Truth channel is the
 
 |                                                   |
 | ------------------------------------------------- |
-| ![legacy-banner](../img/colorization/legacy.jpeg) |
+| ![legacy-banner](/images/blog/colorization/legacy.jpeg) |
 
 ## Conclusion
 

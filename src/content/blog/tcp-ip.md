@@ -12,7 +12,7 @@ This is a breakdown of different protocols in the TCP/IP Protocol Suite. The TCP
 
 It's important to remember that the goal a network is to transfer information. For two applications to exchange information over a network, they most implement the same protocol. An example of this is web browsers requesting a web page from a web server. On one end, the application is the web browser. On the other end, the application is the web server.
 
-![Web Request](../img/tcp-ip/web-request.png)
+![Web Request](/images/blog/tcp-ip/web-request.png)
 
 When a user puts a URL address in the address bar of a web browser, the web browser converts the request to a format the web server will be able to understand. The web server will respond with a format that the browser can display in text or links.
 
@@ -78,7 +78,7 @@ Unlike UDP and TCP who communicate directly between applications, IP provides th
 
 Today, IP has two main versions, IPv4 and IPv6. IPv6 is the newest version. An IP address is assigned to a network interface of node. IPv4 addresses are 32 bits (4 octets). Each octet is separated by a dot and shown as its decimal equivalent.
 
-![IPv4](../img/tcp-ip/ipv4.png)
+![IPv4](/images/blog/tcp-ip/ipv4.png)
 
 IP addresses have two parts:
 
@@ -93,7 +93,7 @@ All hosts in the _same_ subnet share the _same_ common subnet address. Every rou
 
 A **router** is a computer that has been dedicated to the task of forwarding IP packets between networks. A router makes forwarding decisions based on its forwarding database, called a **routing table**. A routing table includes entries that map remote IP networks to `next-hop` routers that are identified by local interfaces. The router will forward the packet to the next-hop router, until the packet reaches the destination, _hop by hop_.
 
-![Router](../img/tcp-ip/router.png)
+![Router](/images/blog/tcp-ip/router.png)
 
 ### More Resources
 

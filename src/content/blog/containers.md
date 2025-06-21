@@ -18,7 +18,7 @@ Docker containers rely on Linux kernel features like **cgroups** and **namespace
 
 Containers and virtual machines (VMs) are similar, both providing an isolated environment to run applications. However, containers do not require a hypervisor nor a guest operating system. Containers share the host operating system's kernel. The **hypervisor** is a software layer that allows multiple operating systems to run on a single machine.
 
-![Containers vs Virtual Machines](../img/containers/containers-vs-vms.png)
+![Containers vs Virtual Machines](/images/blog/containers/containers-vs-vms.png)
 
 ## Docker
 

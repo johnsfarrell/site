@@ -97,7 +97,7 @@ The TCP/IP model has 4 layers, compared to the 7 layers of the OSI model. These 
 
 Although there are only 4 layers, each protocol should _refer to the OSI model layer_. That is why internet layer protocols, IPv4 and IPv6, are considered to be on layer 3.
 
-![Model Layer Comparison](../img/networks/model-layers.png)
+![Model Layer Comparison](/images/blog/networks/model-layers.png)
 
 ## Encapsulation
 
@@ -114,7 +114,7 @@ Let's go through an example of encapsulation for the TCP/IP model:
 7. The frame is then transferred to layer 1, the physical layer, and is converted to a stream of bits.
 8. The stream of bits is placed on the network medium for transmission.
 
-![Encapsulation](../img/networks/encapsulate.png)
+![Encapsulation](/images/blog/networks/encapsulate.png)
 
 The resources below will cover more of these terms in more detail, but it is important to at least understand the general flow of encapsulation and the TCP/IP model.
 

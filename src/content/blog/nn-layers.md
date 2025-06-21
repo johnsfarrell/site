@@ -33,7 +33,7 @@ A pooling layer is used to reduce the spatial dimensions of the input volume. Ge
 
 For max pooling, the output value is the maximum value in the filter's application.
 
-![Max Pooling](../img/nn-layers/max-pooling.png)
+![Max Pooling](/images/blog/nn-layers/max-pooling.png)
 
 We have a $4 \times 4$ input volume. We apply a $2 \times 2$ filter with a stride of $2$. The output volume is $2 \times 2$.
 
@@ -41,7 +41,7 @@ We have a $4 \times 4$ input volume. We apply a $2 \times 2$ filter with a strid
 
 The equation for max pooling is:
 
-![Max Pooling Equation](../img/nn-layers/max-pooling-equation.png)
+![Max Pooling Equation](/images/blog/nn-layers/max-pooling-equation.png)
 
 which simply defines the sliding for $\text{output} = \max(\text{input})$
 
@@ -49,7 +49,7 @@ which simply defines the sliding for $\text{output} = \max(\text{input})$
 
 If every neuron in the current layer is connected to every neuron in the previous layer, the layer is known as a fully connected layer. This is the most common type of neural network layer.
 
-![Fully Connected Layer](../img/nn-layers/fc-layer.svg)
+![Fully Connected Layer](/images/blog/nn-layers/fc-layer.svg)
 
 > A **neuron** is a single node in a neural network. Neurons are also known as perceptrons in the context of neural networks. It takes in a set of input data, processes it with a set of weights and biases, and produces a set of output data. More information on the neuron (perceptron) can be found [here](/writing/neural-networks#perceptrons).
 
@@ -61,7 +61,7 @@ Local response normalization is a technique used to normalize the output of a ne
 
 There are two main types of local response normalization (LRN):
 
-![Local Response Normalization](../img/nn-layers/lrn.png)
+![Local Response Normalization](/images/blog/nn-layers/lrn.png)
 
 > **Inter-Channel**: Normalize the output based on a 1D slice of the output tensor. This is used in the AlexNet architecture we will see below.
 
@@ -75,7 +75,7 @@ The architecture of a neural network is often represented as a series of layers.
 
 **Example**: The [AlexNet](https://en.wikipedia.org/wiki/AlexNet) architecture. As you'll see, there are many layers and statistics included in this visualization. I will break them down below.
 
-![Neural Network Architecture](../img/nn-layers/architecture.png)
+![Neural Network Architecture](/images/blog/nn-layers/architecture.png)
 
 > On the left we see **params**, the number of parameters given to each layer. This is the number of weights and biases in that layer, and the input dimensions.
 
@@ -85,7 +85,7 @@ The blocks in the middle are the individual layers. The layers are going from bo
 
 We can visualize the same architecture in a different way:
 
-![Neural Network Architecture 3D](../img/nn-layers/architecture-3d.png)
+![Neural Network Architecture 3D](/images/blog/nn-layers/architecture-3d.png)
 
 This 3D representation gives us the same information, but in a different format. We can see the input volume, the convolutional layers, and the fully connected layers by relative size.
 

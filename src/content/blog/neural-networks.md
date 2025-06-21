@@ -51,7 +51,7 @@ $output = xw + b = (1 \times 784) (784 \times 1) + b = (1 \times 1) + b=$ (scala
 
 For a multi-class classification problem, we can add more perceptrons as above. We then pass in each input value to each perceptron.
 
-![Perceptron](../img/neural-networks/layer.png)
+![Perceptron](/images/blog/neural-networks/layer.png)
 
 **Example**: For a $28\times 28$ pixel image, we can vectorize the image into a $1 \times 784$ matrix. **But now we have 10 classes.** The dimensions of our variables will be:
 
@@ -71,7 +71,7 @@ $output = xW + b = (1 \times 784) (784 \times 1) + 1 \times 10 = 1 \times 10 + 1
 
 To implement bias, we must add a dimension to each input vector. This input value should be consistent between perceptrons and input vectors, usually just a $1$ at the start or end of a vector. This increased dimensionality, adds a weight to our perceptron, and this extra $w_i$ is the bias, $b$ of the perceptron.
 
-![Bias](../img/neural-networks/bias.png)
+![Bias](/images/blog/neural-networks/bias.png)
 
 ## Composition
 
@@ -105,7 +105,7 @@ $$
 f(x) = max(0, x)
 $$
 
-![ReLU](../img/neural-networks/relu.png)
+![ReLU](/images/blog/neural-networks/relu.png)
 
 ReLU layers allow for locally linear mapping and solves the vanishing gradients issue. The vanishing gradients issue occurs when gradients dimish while training a deep learing model, and is often dependent on the activation function.
 

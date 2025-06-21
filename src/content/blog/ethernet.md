@@ -32,7 +32,7 @@ An Ethernet frame includes the following fields:
 
 > FCS stands for Frame Check Sequence
 
-![Ethernet Frame](../img/ethernet/ethernet-frame.png)
+![Ethernet Frame](/images/blog/ethernet/ethernet-frame.png)
 
 **Maximum Trasmit Unit (MTU)** defines the maximum payload size that can be carried by a single Ethernet frame. Frames with more than 1500 bytes payload are considered "jumbo frames." Ethernet frame size is 64-1518 bytes.
 

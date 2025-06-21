@@ -8,7 +8,7 @@ description: School, lab, and passion projects.
 
 The most comprehensive student test dataset in America. Graph, filter, and explore using plain English.
 
-![Zelma](../content/img/projects/zelma.png)
+![Zelma](/images/projects/zelma.png)
 
 > _GCP, Kubernetes, FastAPI, PostgreSQL, NextJS_
 
@@ -16,7 +16,7 @@ The most comprehensive student test dataset in America. Graph, filter, and explo
 
 RGBIT is a completely open-source and free platform for restoring color to black and white images.
 
-![RGBIT](../content/img/colorization/banner.jpeg)
+![RGBIT](/images/blog/colorization/banner.jpeg)
 
 > _AWS, Docker, TensorFlow, Flask, ExpressJS, MongoDB, ReactJS_
 
