@@ -52,6 +52,6 @@ My recreation of the [NY Times' Connections](https://www.nytimes.com/games/conne
 
 ### [Stock Analysis](https://github.com/johnsfarrell/analysis-proj)
 
-This project analyzed the entire stock market, soley based on fundamental analysis from anlysts across Wall Street. The project involved a heavy amount of webscraping and data cleaning. Report and algorithms available in the repository.
+This project analyzed the entire stock market, soley based on fundamental analysis from analysts across Wall Street. The project involved a heavy amount of webscraping and data cleaning. Report and algorithms available in the repository.
 
 > _Python, Web Scraping, MongoDB_
