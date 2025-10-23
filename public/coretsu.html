@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coretsu</title>
+    <meta name="description" content="Where creative and engineering minds converge to create something the world can't even imagine.">
+    <meta property="og:title" content="Coretsu">
+    <meta property="og:description" content="Where creative and engineering minds converge to create something the world can't even imagine.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://coretsu.com">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Coretsu">
+    <meta name="twitter:description" content="Where creative and engineering minds converge to create something the world can't even imagine.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #1a1612 !important;
+            overflow: hidden;
+            font-family: monospace;
+            margin: 0 !important;
+            padding: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+        }
+        
+        #container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh !important;
+            width: 100vw !important;
+            cursor: pointer;
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            z-index: 9999 !important;
+        }
+        
+        #ascii-art {
+            font-family: monospace;
+            font-size: clamp(10px, 2.5vw, 24px) !important;
+            line-height: 0.9 !important;
+            letter-spacing: 0.01em !important;
+            user-select: none;
+            text-align: center;
+            padding: 0 !important;
+            margin: 0 !important;
+            transform: scale(2) !important;
+            transform-origin: center !important;
+            width: auto !important;
+            height: auto !important;
+            display: block !important;
+            white-space: pre;
+        }
+        
+        @media (max-width: 1200px) {
+            #ascii-art {
+                transform: scale(1.2);
+                font-size: clamp(6px, 1.5vw, 16px);
+            }
+        }
+        
+        @media (max-width: 768px) {
+            #ascii-art {
+                transform: scale(1.0);
+                font-size: clamp(5px, 1.2vw, 12px);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            #ascii-art {
+                transform: scale(0.8);
+                font-size: clamp(4px, 1vw, 10px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="ascii-art"></div>
+    </div>
+
+    <script>
+        // The Visitors inspired patterns - melancholic grandeur meets collaborative creation
+        const patterns = {
+            visitors: (x, y, t) => {
+                const cx = 30;
+                const cy = 15;
+                
+                const room1 = Math.sin(x * 0.15 + t * 0.4) * Math.cos(y * 0.2 + t * 0.3);
+                const room2 = Math.cos((x - 15) * 0.18 + t * 0.35) * Math.sin(y * 0.22 + t * 0.28);
+                const room3 = Math.sin((x - 30) * 0.12 + t * 0.45) * Math.cos((y - 8) * 0.25 + t * 0.32);
+                const room4 = Math.cos((x - 45) * 0.16 + t * 0.38) * Math.sin((y - 20) * 0.19 + t * 0.42);
+                
+                const connection = Math.sin(t * 0.15) * Math.exp(-Math.abs(x - cx) * 0.02) * 
+                                  Math.sin(y * 0.08 + t * 0.2);
+                
+                return (room1 + room2 + room3 + room4) * 0.3 + connection * 0.6;
+            },
+            
+            feminine: (x, y, t) => {
+                const cx = 30;
+                const cy = 15;
+                
+                const longing = Math.sin((x - cx) * 0.1 + t * 0.25) * Math.cos((y - cy) * 0.12 + t * 0.3);
+                const memory = Math.sin(x * 0.08 + t * 0.2) * Math.exp(-((x - cx) ** 2 + (y - cy) ** 2) * 0.002);
+                const yearning = Math.cos(y * 0.15 + t * 0.18) * Math.sin(t * 0.35);
+                
+                return longing * 0.4 + memory * 0.4 + yearning * 0.3;
+            },
+            
+            sorrow: (x, y, t) => {
+                const cx = 30;
+                const cy = 15;
+                const dist = Math.sqrt((x - cx) ** 2 + (y - cy) ** 2);
+                
+                const melancholy = Math.sin(x * 0.05 + t * 0.1) * Math.cos(y * 0.07 + t * 0.12) * 
+                                  (1 + Math.sin(t * 0.08));
+                const hope = Math.exp(-dist * 0.08) * Math.sin(t * 0.6) * 0.5;
+                const weight = Math.sin(t * 0.05) * Math.cos(dist * 0.02 + t * 0.03);
+                
+                return melancholy * 0.7 + hope * 0.2 + weight * 0.3;
+            },
+            
+            mansion: (x, y, t) => {
+                const cx = 30;
+                
+                const architecture = Math.sin(x * 0.3) * Math.cos(y * 0.4) * 
+                                   (0.8 + 0.2 * Math.sin(t * 0.1));
+                const emptiness = Math.sin(x * 0.06 + t * 0.15) * Math.cos(y * 0.08 + t * 0.18) *
+                                 Math.sin(t * 0.25);
+                const decay = Math.sin((x + y) * 0.04 + t * 0.05) * 
+                              Math.exp(-Math.abs(x - cx) * 0.03);
+                
+                return architecture * 0.4 + emptiness * 0.3 + decay * 0.4;
+            }
+        };
+
+        let frame = 0;
+        let patternType = 0;
+        let mousePos = { x: 0, y: 0 };
+        let mouseDown = false;
+        
+        const patternTypes = ['visitors', 'feminine', 'sorrow', 'mansion'];
+        const width = 80;
+        const height = 45;
+        const slowdownFactor = 18;
+        
+        const container = document.getElementById('container');
+        const asciiArt = document.getElementById('ascii-art');
+        
+        function generateAsciiArt() {
+            const t = (frame * Math.PI) / (60 * slowdownFactor);
+            const currentPattern = patterns[patternTypes[patternType]];
+            let result = '';
+            
+            for (let y = 0; y < height; y++) {
+                for (let x = 0; x < width; x++) {
+                    let value = currentPattern(x, y, t);
+                    
+                    if (mouseDown) {
+                        const rect = container.getBoundingClientRect();
+                        const dx = x - (((mousePos.x - rect.left) / rect.width) * width);
+                        const dy = y - (((mousePos.y - rect.top) / rect.height) * height);
+                        const dist = Math.sqrt(dx * dx + dy * dy);
+                        const mouseInfluence = Math.exp(-dist * 0.1) * Math.sin(t * 2);
+                        value += mouseInfluence * 0.8;
+                    }
+                    
+                    if (value > 0.8) {
+                        result += '<span style="color: #d4af37;">█</span>';
+                    } else if (value > 0.5) {
+                        result += '<span style="color: #b8860b;">▓</span>';
+                    } else if (value > 0.2) {
+                        result += '<span style="color: #8b4513;">▒</span>';
+                    } else if (value > -0.1) {
+                        result += '<span style="color: #654321;">░</span>';
+                    } else if (value > -0.4) {
+                        result += '<span style="color: #4a2c2a;">·</span>';
+                    } else {
+                        result += '<span style="color: #2c1810;"> </span>';
+                    }
+                }
+                result += '<br>';
+            }
+            
+            return result;
+        }
+        
+        function animate() {
+            asciiArt.innerHTML = generateAsciiArt();
+            frame = (frame + 1) % (240 * slowdownFactor);
+            requestAnimationFrame(animate);
+        }
+        
+        container.addEventListener('click', () => {
+            patternType = (patternType + 1) % patternTypes.length;
+        });
+        
+        container.addEventListener('mousemove', (e) => {
+            mousePos = { x: e.clientX, y: e.clientY };
+        });
+        
+        container.addEventListener('mousedown', () => {
+            mouseDown = true;
+        });
+        
+        container.addEventListener('mouseup', () => {
+            mouseDown = false;
+        });
+        
+        // Start the animation
+        animate();
+    </script>
+</body>
+</html>
