@@ -32,4 +32,9 @@ const isActive = href === pathname || href === "/" + subpath?.[0];
   a.external::after {
     content: " ↗";
   }
+
+  a:hover {
+    transform: scale(1.075);
+    text-decoration: underline;
+  }
 </style>

@@ -5,7 +5,6 @@ html a {
 }
 
 html a:hover {
-  transform: scale(1.075) rotate(2.5deg);
   text-decoration: underline;
 }
 
