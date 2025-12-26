@@ -92,7 +92,7 @@ img {
   object-fit: contain;
 }
 
-img:not(#polaroid img) {
+img:not(#polaroid img, #book img) {
   mix-blend-mode: multiply;
   animation: load 0.3s ease;
 }

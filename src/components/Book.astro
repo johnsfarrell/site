@@ -1,0 +1,79 @@
+---
+interface Book {
+    title: string;
+    link: string;
+    image: string;
+    color: string;
+    depth: number;
+}
+
+const { title, link, image, color, depth } = Astro.props;
+---
+
+<div id="book-container">
+  <div id="book" style={`--book-color: ${color}; --book-depth: ${depth}px;`}>
+    <a href={link} target="_blank">
+        <img src={image} alt={title} />
+    </a>
+  </div>
+</div>
+
+<style>
+    #book-container {
+        perspective: 1000px;
+        display: inline-block;
+        margin: 2em;
+    }
+
+    #book {
+        --depth: var(--book-depth);
+        --spine-light: color-mix(in srgb, var(--book-color) 85%, white);
+        --spine-lighter: color-mix(in srgb, var(--book-color) 75%, white);
+        --spine-medium: color-mix(in srgb, var(--book-color) 95%, black);
+        --spine-dark: color-mix(in srgb, var(--book-color) 85%, black);
+        --paper-depth: calc(var(--depth) - 5px);
+        --paper-shadow: calc(var(--depth) * 0.4);
+        --shadow-x: calc(var(--depth) * 0.4);
+
+        box-shadow: 0 5px 0 var(--spine-lighter),
+                    0 var(--paper-shadow) 0 #f2f2f2,
+                    0 var(--paper-depth) 0 #fff,
+                    0 var(--depth) 0 var(--book-color),
+                    -4px 0 0 var(--spine-light),
+                    -4px var(--depth) 0 var(--book-color),
+                    -8px 0 0 var(--spine-medium),
+                    -8px var(--depth) 0 var(--spine-dark),
+                    4px 0 0 var(--spine-lighter),
+                    4px 5px 0 var(--spine-lighter),
+                    2px var(--paper-depth) 0 var(--book-color),
+                    2px var(--depth) 0 var(--book-color),
+                    var(--shadow-x) var(--depth) 1px rgba(0, 0, 0, 0.2);
+        border-top: 5px solid var(--spine-light);
+
+        transform: rotateX(45deg) translateY(calc(var(--depth) * -1));
+        transform-style: preserve-3d;
+
+        opacity: 0;
+        animation: fadeIn 0.5s ease forwards;
+
+        transition: all 0.2s ease;
+        border-radius: 0.1em 0.1em 0 0;
+    }
+
+    #book:hover {
+        transform: rotateX(40deg) translateY(calc(var(--depth) * -1)) scale(1.025);
+        filter: brightness(0.95);
+        --depth: calc(var(--book-depth) * 0.84);
+    }
+
+    @keyframes fadeIn {
+        to {
+            opacity: 1;
+        }
+    }
+
+    #book img {
+        display: block;
+    }
+</style>
+

@@ -24,9 +24,14 @@ export const IMAGES = [
   { src: "/images/providence_3.jpg", label: "providence, ri" },
 ];
 
+export const BOOKS = [
+  { title: "Careless People", link: "https://en.wikipedia.org/wiki/Careless_People", image: "/images/books/careless-people.png", color: "rgb(230, 231, 206)", depth: 25 },
+  { title: "The First Fifteen Lives of Harry August", link: "https://en.wikipedia.org/wiki/The_First_Fifteen_Lives_of_Harry_August", image: "/images/books/the-first-fifteen-lives-of-harry-august.png", color: "rgb(72, 60, 174)", depth: 35 },
+]
+
 export const HEADER_LINKS = [
   { href: "/", label: "home" },
-  // { href: "/writing", label: "writing" },
   { href: "/projects", label: "projects" },
+  { href: "/bookshelf", label: "bookshelf" },
   { href: "/cv", label: "cv" },
 ];

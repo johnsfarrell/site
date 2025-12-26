@@ -1,0 +1,95 @@
+---
+import Base from "../layouts/Base.astro";
+import Book from "../components/Book.astro";
+import { getCollection } from "astro:content";
+import FormattedDate from "../components/FormattedDate.astro";
+import { BOOKS } from "../consts";
+
+const filepath = "./src/pages/bookshelf.astro";
+
+const blogs = (await getCollection("blog")).sort(
+  (a: any, b: any) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
+
+const articles: any[] = await (await fetch(`https://opensheet.elk.sh/${import.meta.env.ARTICLES_GOOGLE_SHEET_ID}/Sheet1`)).json();
+---
+
+<Base filepath={filepath}>
+  <div class="container">
+    <div class="books">
+      {BOOKS.map((book) => (
+        <Book {...book} />
+      ))}
+    </div>
+    <hr />
+    <div class="columns">
+      <section>
+        <h4>More reads</h4>
+        <ul>
+          {
+            articles.map((article: any) => (
+              <li>
+                <a href={article.link} target="_blank">
+                  <span class="title">{article.title}</span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+      <section>
+        <h4>My writing</h4>
+        <ul>
+          {
+            blogs.map((blog: any) => (
+              <li>
+                <a href={`/writing/${blog.slug}/`}>
+                  <span class="title">{blog.data.title}</span> -
+                  <span class="date">
+                    <FormattedDate date={blog.data.pubDate} />
+                  </span>
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </section>
+    </div>
+  </div>
+</Base>
+
+<style>
+  .books {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .columns {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2em;
+  }
+
+  ul {
+    padding: 0;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  .title {
+    font-weight: bold;
+  }
+
+  .date {
+    font-style: italic;
+  }
+
+  @media (max-width: 600px) {
+    .columns {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
