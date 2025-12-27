@@ -34,6 +34,8 @@ const { title, link, image, color, depth } = Astro.props;
         --paper-depth: calc(var(--depth) - 5px);
         --paper-shadow: calc(var(--depth) * 0.4);
         --shadow-x: calc(var(--depth) * 0.4);
+        --book-rotation: 45deg;
+        --book-scale: 1;
 
         box-shadow: 0 5px 0 var(--spine-lighter),
                     0 var(--paper-shadow) 0 #f2f2f2,
@@ -50,7 +52,7 @@ const { title, link, image, color, depth } = Astro.props;
                     var(--shadow-x) var(--depth) 1px rgba(0, 0, 0, 0.2);
         border-top: 5px solid var(--spine-light);
 
-        transform: rotateX(45deg) translateY(calc(var(--depth) * -1));
+        transform: rotateX(var(--book-rotation)) translateY(calc(var(--depth) * -1)) scale(var(--book-scale));
         transform-style: preserve-3d;
 
         opacity: 0;
@@ -61,9 +63,10 @@ const { title, link, image, color, depth } = Astro.props;
     }
 
     #book:hover {
-        transform: rotateX(40deg) translateY(calc(var(--depth) * -1)) scale(1.025);
-        filter: brightness(0.95);
-        --depth: calc(var(--book-depth) * 0.84);
+      filter: brightness(0.95);
+      --depth: calc(var(--book-depth) * 0.84);
+      --book-rotation: 40deg;
+      --book-scale: 1.025;
     }
 
     @keyframes fadeIn {
