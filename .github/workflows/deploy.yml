@@ -1,6 +1,7 @@
 name: Deploy Website
 
 on:
+  workflow_dispatch:
   push:
     branches: [main]
   schedule:
@@ -29,7 +30,6 @@ jobs:
       - name: Checkout your repository using git
         uses: actions/checkout@v4
         with:
-          ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 0
 
       - name: Install, build, and upload your site
