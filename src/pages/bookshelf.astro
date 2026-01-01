@@ -13,9 +13,7 @@ const blogs = (await getCollection("blog")).sort(
 
 const articles = (await fetch(`https://opensheet.elk.sh/${import.meta.env.ARTICLES_GOOGLE_SHEET_ID}/Sheet1`).then(res => res.json())).filter(
   (article: any) => article.star
-).sort(
-  (a: any, b: any) => new Date(b.date).valueOf() - new Date(a.date).valueOf()
-);
+).reverse();
 ---
 
 <Base filepath={filepath}>
