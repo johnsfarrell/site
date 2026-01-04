@@ -4,7 +4,9 @@ description: "What is a decorator in Python?"
 pubDate: "July 25, 2024"
 ---
 
-Decorators are an important concept to understand, especially when working with libraries and packages in Python. Below discusses what a decorator is, and the most recent use case I found for them, **Prefect Flows**.
+Decorators are an important concept to understand, especially when working with Python packages. Below discusses what a decorator is, and the most recent use case I found for them, [**Prefect Flows**](https://www.prefect.io/).
+
+*Revised on Jan 3, 2026*
 
 <hr>
 
@@ -44,8 +46,6 @@ def my_decorator(func):
 def my_flow():
     print("executing stuff")
 ```
-
-Decorators are used in many popular libraries, include Prefect above. They are a powerful tool to add functionality to existing code. It is both helpful and rewarding to explore these features and nuances in Python!
 
 Helpful resources:
 
