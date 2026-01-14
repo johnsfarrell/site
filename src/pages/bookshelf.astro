@@ -2,7 +2,6 @@
 import Base from "../layouts/Base.astro";
 import Book from "../components/Book.astro";
 import { getCollection } from "astro:content";
-import FormattedDate from "../components/FormattedDate.astro";
 import { BOOKS } from "../consts";
 
 const filepath = "./src/pages/bookshelf.astro";
@@ -31,8 +30,14 @@ const articles = (await fetch(`https://opensheet.elk.sh/${import.meta.env.ARTICL
           {
             articles.map((article: any) => (
               <li>
+                  <img 
+                    src={`https://www.google.com/s2/favicons?domain=${article.link}&sz=32`} 
+                    alt={article.title + " favicon"} 
+                    class="favicon"
+                    loading="lazy"
+                  />
                 <a href={article.link} target="_blank">
-                  <span class="title">{article.title}</span>
+                  {article.title}
                 </a>
               </li>
             ))
@@ -46,10 +51,7 @@ const articles = (await fetch(`https://opensheet.elk.sh/${import.meta.env.ARTICL
             blogs.map((blog: any) => (
               <li>
                 <a href={`/writing/${blog.slug}/`}>
-                  <span class="title">{blog.data.title}</span> -
-                  <span class="date">
-                    <FormattedDate date={blog.data.pubDate} />
-                  </span>
+                  {blog.data.title}
                 </a>
               </li>
             ))
@@ -67,29 +69,28 @@ const articles = (await fetch(`https://opensheet.elk.sh/${import.meta.env.ARTICL
     justify-content: center;
   }
 
-  .columns {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 2em;
-  }
-
   ul {
     padding: 0;
   }
-
+  
   li {
     list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
 
-  .title {
-    font-weight: bold;
+  .favicon {
+    width: 16px;
+    height: 16px;
   }
 
-  .date {
-    font-style: italic;
+  .columns {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
   }
 
-  @media (max-width: 600px) {
+  @media (max-width: 800px) {
     .columns {
       grid-template-columns: 1fr;
     }
