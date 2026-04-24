@@ -25,6 +25,7 @@ export const IMAGES = [
 ];
 
 export const BOOKS = [
+  { title: "Stoner", link: "https://en.wikipedia.org/wiki/Stoner_(novel)", image: "/images/books/stoner.png", color: "rgb(155, 155, 155)", depth: 25 },
   { title: "Careless People", link: "https://en.wikipedia.org/wiki/Careless_People", image: "/images/books/careless-people.png", color: "rgb(230, 231, 206)", depth: 25 },
   { title: "The First Fifteen Lives of Harry August", link: "https://en.wikipedia.org/wiki/The_First_Fifteen_Lives_of_Harry_August", image: "/images/books/the-first-fifteen-lives-of-harry-august.png", color: "rgb(72, 60, 174)", depth: 35 },
 ]
