@@ -50,7 +50,7 @@ const articles = (await fetch(`https://opensheet.elk.sh/${import.meta.env.ARTICL
           {
             blogs.map((blog: any) => (
               <li>
-                <a href={`/writing/${blog.slug}/`}>
+                <a href={`/writing/${blog.id}/`}>
                   {blog.data.title}
                 </a>
               </li>

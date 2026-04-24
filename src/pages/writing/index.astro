@@ -16,7 +16,7 @@ const filepath = "./src/pages/writing/index.astro";
       {
         posts.map((post: any) => (
           <li>
-            <a href={`/writing/${post.slug}/`}>
+            <a href={`/writing/${post.id}/`}>
               <span>
                 <span class="title">{post.data.title}</span> -
                 <span class="date">

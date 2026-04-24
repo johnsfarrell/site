@@ -33,10 +33,10 @@ jobs:
           fetch-depth: 0
 
       - name: Install, build, and upload your site
-        uses: withastro/action@v2
+        uses: withastro/action@v6
         with:
           path: .
-          node-version: 18.20.8
+          node-version: "22.13.0"
           package-manager: bun@1.1.10
 
   deploy:
