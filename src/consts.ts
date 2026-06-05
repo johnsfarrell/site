@@ -1,7 +1,7 @@
 export const SITE_TITLE = "John Farrell";
 export const SITE_DESCRIPTION = "Computer science student at Brown University";
 export const SITE_AUTHOR = "John Farrell";
-export const SITE_EMAIL = "john_farrell@brown.edu";
+export const SITE_EMAIL = "john_farrell@alumni.brown.edu";
 export const GITHUB_REPO = "johnsfarrell/site";
 export const SITE_URL = "https://johnfarrell.io";
 
@@ -32,7 +32,5 @@ export const BOOKS = [
 
 export const HEADER_LINKS = [
   { href: "/", label: "home" },
-  { href: "/projects", label: "projects" },
-  { href: "/bookshelf", label: "bookshelf" },
   { href: "/cv", label: "cv" },
 ];
