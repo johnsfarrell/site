@@ -1,7 +1,6 @@
 ---
 import Base from "../layouts/Base.astro";
 import { SITE_EMAIL, SOCIAL_MEDIA } from "../consts";
-import Mileage from "../components/Mileage.astro";
 import Polaroid from "../components/Polaroid.astro";
 
 const filepath = "./src/pages/index.astro";
@@ -12,42 +11,19 @@ const filepath = "./src/pages/index.astro";
     <Polaroid />
     <div class="description">
       <br />
-      Hey! I'm a senior at Brown studying Computer Science and Mathematics.
+      Hey! 
       <br /><br />
-      I have TA'd for both undergraduate and graduate computer science courses
-      at Brown, covering material ranging from <a href="https://browncsci1430.github.io/">computer vision</a> and <a href="https://cs.brown.edu/courses/info/data1030/">data science</a> to <a
-        href="https://cs.brown.edu/degrees/cybersecurity/"
-        >advanced cybersecurity</a
-      >. I have served as <a
-        href="https://cs.brown.edu/degrees/undergrad/jobs/hta/">Head TA</a
-      > for a few courses at Brown, coordinating UTA-STA staffs and classes of students. I am passionate
-      about the importance of peer education and the role TAs can play in fostering
-      an inclusive learning environment.
+      I recently graduated from Brown University, where I studied Computer Science and Mathematics. There, I was a TA for courses covering computer vision, data science, and cybersecurity. I'm passionate about peer education and the role TAs can play in fostering an inclusive learning environment.
       <br /><br />
-      I have industry experience in software engineering, with internship experience at 
-        <a href="https://stripe.com/">Stripe</a> (Summer 2025),
-        <a href="https://billmax.com/">BillMax</a>, and
-        <a href="https://sharpnotions.com/">Sharp Notions</a>.
-      I have also assisted several professors and associates with software development related tasks.
-
-      Notable projects include the development of <a href="https://blog.cs.brown.edu/2023/12/18/research-associate-tom-sgouros-and-brown-cs-students-use-sound-and-ai-make-nasa-imagery-accessible/">Stellasonos</a> (NASA-funded), <a href="https://www.zelma.ai/">Zelma</a> (NCCI-funded), and the <a href="https://www.globallinkages.org/">Global Linkages Lab</a> infra.
-
-      <br /><br />
-      I also enjoy running. Below is a <a href="https://docs.github.com/en/account-and-profile/setting-up-and-managing-your-github-profile/managing-contribution-settings-on-your-profile/viewing-contributions-on-your-profile#contributions-calendar">GitHub-inspired</a> visualization of my mileage over the past year.
+      I'm currently in the process of moving to California 📍
     </div>
   </div>
   <hr />
-  <Mileage />
   <div class="contact">
     <span>
       Please feel free to reach me at <a href={"mailto:" + SITE_EMAIL}
         >{SITE_EMAIL}</a
-      >.
-    </span>
-    <span>
-      Here are my
-      <a href={SOCIAL_MEDIA.github}>github</a> and 
-      <a href={SOCIAL_MEDIA.linkedin}>linkedin</a>.
+      > or on <a href={SOCIAL_MEDIA.linkedin}>linkedin</a>.
     </span>
   </div>
 </Base>
@@ -55,7 +31,6 @@ const filepath = "./src/pages/index.astro";
 <style>
   .description {
     text-wrap: wrap;
-    text-align: justify;
   }
 
   hr {
