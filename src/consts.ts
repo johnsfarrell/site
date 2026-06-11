@@ -12,9 +12,11 @@ export const SOCIAL_MEDIA = {
 
 export const IMAGES = [
   { src: "/images/providence_4.jpg", label: "providence, ri" },
+  { src: "/images/san_juan.jpg", label: "san juan, pr" },
   { src: "/images/kennett_square.jpg", label: "kennett square, pa" },
   { src: "/images/royersford.jpg", label: "royersford, pa" },
   { src: "/images/providence_2.jpg", label: "providence, ri" },
+  { src: "/images/lincoln.jpg", label: "lincoln, ri" },
   { src: "/images/albuquerque.jpg", label: "albuquerque, nm" },
   { src: "/images/boston.jpg", label: "boston, ma" },
   { src: "/images/boulder.jpg", label: "boulder, co" },
